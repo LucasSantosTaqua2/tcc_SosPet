@@ -1,0 +1,72 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.conteudoTotal {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Poppins, sans-serif;
+    background-color: #F5DEB3;
+    text-align: center;
+    flex-direction: column;
+}
+.contato-container {
+    position: relative;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 50px;
+}
+
+    .contato-container label {
+        color: #454545;
+        font-size: 10pt;
+        text-decoration: underline;
+    }
+
+    .contato-container h1 {
+        color: black;
+        font-size: 26pt;
+        transition: .5s ease;
+    }
+
+        .contato-container h1:hover {
+            color: #856e50;
+        }
+
+
+.contato-info {
+    margin-top: 50px;
+    text-align: center;
+    display: flex;
+}
+
+.info-pessoal {
+    border-right: 1px solid #DEB887;
+    padding: 0px 10px;
+}
+
+    .info-pessoal p {
+        font-size: 12pt;
+    }
+
+    .info-pessoal:first-child {
+        border-left: 1px solid #DEB887;
+    }
+
+.info-nome {
+    font-size: 12pt;
+    font-weight: 600;
+}
+
+.img-insta {
+    width: 25px;
+    transition: .5s;
+}
+
+    .img-insta:hover {
+        width: 32px;
+    }

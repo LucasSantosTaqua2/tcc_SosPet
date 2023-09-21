@@ -1,0 +1,44 @@
+﻿@model LoginModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+
+<link rel="stylesheet" href="~/css/login.css">
+<section class="container">
+    <div class="login-container">
+        <div class="circle circle-one"></div>
+        <div class="form-container">
+            <img src="/img/cachorro-removebg-preview.png" alt="illustration" class="illustration" />
+            <h1 class="opacity">Login</h1>
+
+            @if (TempData["MensagemErro"] != null)
+            {
+                <div>
+                    @TempData["MensagemErro"]
+                </div>
+            }
+
+            <form asp-controller="Usuario" asp-action="Login" method="post">
+                <div class="form-group">
+                    <input type="text" asp-for="Email" placeholder="Email" />
+                    @Html.ValidationMessageFor(x => x.Email)
+                </div>
+                <div class="form-group">
+                    <input type="password" asp-for="Password" placeholder="Senha" />
+                    @Html.ValidationMessageFor(x => x.Password)
+                </div>
+                <button class="opacity">Entrar</button>
+            </form>
+
+            <div class="register-forget opacity">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Cadastro">Cadastrar</a>
+               <!--<a href="">Esqueci minha senha</a>-->
+            </div>
+        </div>
+        <div class="circle circle-two"></div>
+    </div>
+    <div class="theme-btn-container"></div>
+</section>
+<script type="module" src="/js/Login.js"></script>
+<script src="/_framework/aspnetcore-browser-refresh.js"></script>
