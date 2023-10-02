@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,8 +17,11 @@ namespace SOSPets.Controllers
     {
         private readonly Contexto _context;
 
-        public AdocaoController(Contexto context)
+        private string caminhoImagem;
+
+        public AdocaoController(Contexto context, IWebHostEnvironment sistema)
         {
+            caminhoImagem = sistema.WebRootPath;
             _context = context;
         }
 
@@ -46,29 +52,55 @@ namespace SOSPets.Controllers
         }
 
         // GET: Adocao/Create
+        [Authorize(AuthenticationSchemes = "CookieAuthentication")]
         public IActionResult Create()
         {
-            ViewData["UsuarioId"] = new SelectList(_context.UsuarioModels, "Id", "Id");
+            /* var claimIdUser = User.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Sid).FirstOrDefault(); 
+             ViewData["UsuarioId"] = claimIdUser; */
+            ViewData["UsuarioId"] = new SelectList (_context.UsuarioModels, "Id", "Id");
             return View();
         }
 
 
-
-        // POST: Adocao/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Peso,Porte,Raca,Idade,Cor,Cidade,Data,UsuarioId")] AdocaoModel adocaoModel)
+        
+        public async Task<IActionResult> Create(AdocaoModel adocaoModel, IFormFile imagem)
         {
-            if (ModelState.IsValid)
+            string caminhoSalvarImg = caminhoImagem + "\\img\\adocao\\";
+            string nomeImg = Guid.NewGuid() + "_" + imagem.FileName;
+
+            long usuarioId = long.Parse(User.FindFirstValue("Sid"));
+
+
+            if( ! Directory.Exists(caminhoSalvarImg))
             {
-                _context.Add(adocaoModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                Directory.CreateDirectory(caminhoSalvarImg);
             }
-            ViewData["UsuarioId"] = new SelectList(_context.UsuarioModels, "Id", "Id", adocaoModel.UsuarioId);
-            return View(adocaoModel);
+
+            using (var stream = System.IO.File.Create(caminhoSalvarImg + nomeImg))
+            {
+                await imagem.CopyToAsync(stream);
+            }
+
+            adocaoModel.Imagem = nomeImg;
+
+            ViewData["UsuarioId"] = new SelectList(_context.UsuarioModels, "Id", "Id");
+
+            _context.AdocaoModel.Add(adocaoModel);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+
+            /* try
+             {
+                 _context.AdocaoModel.Add(adocaoModel);
+                 _context.SaveChanges();
+                 return RedirectToAction(nameof(Index));
+             }
+             catch
+             {
+                 return View();
+
+             }*/
         }
 
         // GET: Adocao/Edit/5
@@ -84,7 +116,7 @@ namespace SOSPets.Controllers
             {
                 return NotFound();
             }
-            ViewData["UsuarioId"] = new SelectList(_context.UsuarioModels, "Id", "Id", adocaoModel.UsuarioId);
+            ViewData["UsuarioId"] = new SelectList(_context.UsuarioModels, "Id", "Email", adocaoModel.UsuarioId);
             return View(adocaoModel);
         }
 
@@ -120,7 +152,7 @@ namespace SOSPets.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UsuarioId"] = new SelectList(_context.UsuarioModels, "Id", "Id", adocaoModel.UsuarioId);
+            ViewData["UsuarioId"] = new SelectList(_context.UsuarioModels, "Id", "Email", adocaoModel.UsuarioId);
             return View(adocaoModel);
         }
 

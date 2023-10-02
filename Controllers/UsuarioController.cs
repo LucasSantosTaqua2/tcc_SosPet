@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SOSPets.Data;
 using SOSPets.Models;
+using System.Security.Claims;
 
 namespace SOSPets.Controllers
 {
@@ -20,27 +22,34 @@ namespace SOSPets.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginModel loginModel)
+        public async Task<IActionResult> Login(string email, string password, int id)
         {
-            try
-            {
-                if(ModelState.IsValid)
-                {
-                    if(loginModel.Email == "teste@teste.com" & loginModel.Password == "12345")
-                    {
-                        return RedirectToAction("Index", "Usuario");
-                    }
 
-                    TempData["MensagemErro"] = $"E-mail e/ou Senha invalido(s). Por favor, tente novamente!";
-                }
+            UsuarioModel usuarioLogado = _context.UsuarioModels.Where(a => a.Email == email && a.Password == password).FirstOrDefault();
 
-                return View("Login");
-            }
-            catch (Exception erro)
+            if(usuarioLogado == null)
             {
-                TempData["MensagemErro"] = $"Ops, não conseguimos realizar seu login, tente novamente, detalhe do erro: {erro.Message}";
-                return RedirectToAction("Login");
+                TempData["erro"] = "Login e senha invalidos";
+                return View();
             }
+            else
+            {
+                var claims = new List<Claim>();
+                claims.Add(new Claim(ClaimTypes.Name, usuarioLogado.Nome));
+                claims.Add(new Claim(ClaimTypes.Sid, usuarioLogado.Id.ToString()));
+
+
+
+                var userIdentity = new ClaimsIdentity(claims, "Acesso");
+
+                ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
+                await HttpContext.SignInAsync("CookieAuthentication", principal, new AuthenticationProperties());
+
+                return RedirectToAction("Index", "Home");
+
+            }
+
+            
         }
 
         // GET: Usuario
@@ -84,7 +93,7 @@ namespace SOSPets.Controllers
         {
             if (ModelState.IsValid)
             {
-                usuarioModel.SetSenhaHash();
+               /* usuarioModel.SetSenhaHash();*/
                 _context.Add(usuarioModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Login));
@@ -146,19 +155,10 @@ namespace SOSPets.Controllers
         // GET: Usuario/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.UsuarioModels == null)
-            {
-                return NotFound();
-            }
+            _context.UsuarioModels.Remove(_context.UsuarioModels.Where(a => a.Id == id).FirstOrDefault());
+            _context.SaveChanges();
+            return RedirectToAction("Index");
 
-            var usuarioModel = await _context.UsuarioModels
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (usuarioModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(usuarioModel);
         }
 
         // POST: Usuario/Delete/5

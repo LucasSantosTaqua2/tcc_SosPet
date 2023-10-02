@@ -1,13 +1,21 @@
-﻿using System;
+﻿using SOSPets.Controllers;
+using System;
 using System.ComponentModel.DataAnnotations;
+using SOSPets.Controllers;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Security.Claims;
 using System.Web;
+using SOSPets.Controllers;
+using SOSPets.Models;
+using Microsoft.Extensions.Configuration.UserSecrets;
+
 namespace SOSPets.Models
 {
 
     [Table("Adocao")]
     public class AdocaoModel
     {
+
         [Column("Id")]
         [Display(Name = "Id")]
         public int Id { get; set; }
@@ -43,6 +51,10 @@ namespace SOSPets.Models
         [Column("Data")]
         [Display(Name = "Data")]
         public DateTime Data { get; set; } = DateTime.Now;
+
+        [Column("Imagem")]
+        [Display(Name = "Imagem")]
+        public string Imagem { get; set; }
 
         [Column("UsuarioId")]
         [Display(Name = "UsuarioId")]

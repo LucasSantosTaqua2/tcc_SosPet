@@ -49,6 +49,11 @@ namespace SOSPets.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Idade");
 
+                    b.Property<string>("Imagem")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Imagem");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")

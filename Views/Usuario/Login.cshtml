@@ -18,15 +18,21 @@
                     @TempData["MensagemErro"]
                 </div>
             }
+            @if (TempData["erro"] != null)
+            {
+                <div class="alert alert-danger">
+                    @TempData["erro"]
+                </div>
+            }
 
             <form asp-controller="Usuario" asp-action="Login" method="post">
                 <div class="form-group">
-                    <input type="text" asp-for="Email" placeholder="Email" />
-                    @Html.ValidationMessageFor(x => x.Email)
+                    <input type="text" name="email" placeholder="Email" />
+                    
                 </div>
                 <div class="form-group">
-                    <input type="password" asp-for="Password" placeholder="Senha" />
-                    @Html.ValidationMessageFor(x => x.Password)
+                    <input type="password" name="password" placeholder="Senha" />
+                   
                 </div>
                 <button class="opacity">Entrar</button>
             </form>

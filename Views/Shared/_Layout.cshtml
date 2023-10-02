@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -23,31 +24,33 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between navigation">
                     <ul class="menu navbar-nav flex-grow-1">
                         <li class="nav-item menu-link">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item menu-link">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ONGs" asp-action="ONGs">ONGs</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="ONGs" asp-action="ONGs">ONGs</a>
                         </li>
                         <li class="nav-item menu-link">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Adocao"
+                            <a class="nav-link text-light" asp-area="" asp-controller="Adocao"
                                asp-action="Index">Adoção</a>
                         </li>
                         <li class="nav-item menu-link">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Encontrados"
+                            <a class="nav-link text-light" asp-area="" asp-controller="Encontrados"
                                asp-action="Encontrados">Encontrados</a>
                         </li>
                         <li class="nav-item menu-link">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Desaparecidos"
+                            <a class="nav-link text-light" asp-area="" asp-controller="Desaparecidos"
                                asp-action="Desaparecidos">Desaparecidos</a>
                         </li>
                         <li class="nav-item menu-link">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Contatos"
+                            <a class="nav-link text-light" asp-area="" asp-controller="Contatos"
                                asp-action="Contatos">Contatos</a>
                         </li>
 
                     </ul>
 
-                      <a asp-controller="Usuario" asp-action="Login" class="nav-link text-dark" >Login</a>
+                    
+                        <a asp-controller="Usuario" asp-action="Login" class="nav-link text-light" >Login</a>s
+
 
                     <!--<button type="button" class="btn btn-faded btn-login">Log in</button>
                     <button type="button" class="btn btn-faded btn-login">Sign up</button>-->

@@ -1,5 +1,4 @@
 ﻿using SOSPets.Helper;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -38,5 +37,7 @@ namespace SOSPets.Models
         {
             Password = Password.GerarHash();
         }
+
+
     }
 }

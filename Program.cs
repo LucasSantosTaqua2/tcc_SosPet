@@ -9,6 +9,13 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<Contexto>
     (options => options.UseSqlServer("server=LUCAS-NOTE; Database=DB_SOS_PETS;Integrated Security=SSPI;TrustServerCertificate=True"));
 
+builder.Services.AddAuthentication("CookieAuthentication").AddCookie("CookieAuthentication", option =>
+{
+    option.Cookie.Name = "UserLoginCookie";
+    option.LoginPath = "/Usuario/Login";
+    option.AccessDeniedPath = "/Usuario/Erro";
+});
+
 var app = builder.Build();
 
 
@@ -25,6 +32,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

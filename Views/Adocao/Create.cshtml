@@ -10,49 +10,51 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create" method="post" enctype="multipart/form-data">
+        <form action="/Adocao/Create" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Nome" class="control-label">Nome:</label>
+                <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Peso" class="control-label">Peso:</label>
+                <label asp-for="Peso" class="control-label"></label>
                 <input asp-for="Peso" class="form-control" />
                 <span asp-validation-for="Peso" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Porte" class="control-label">Porte:</label>
-                <select asp-for="Porte" name="porte" class="form-control">
-                    <option selected>Selecione o porte do animal</option>
-                    <option value="Pequeno">Pequeno</option>
-                    <option value="Médio">Médio</option>
-                    <option value="Grande">Grande</option>
-                </select>
+                <label asp-for="Porte" class="control-label"></label>
+                <input asp-for="Porte" class="form-control" />
                 <span asp-validation-for="Porte" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Raca" class="control-label">Raça:</label>
+                <label asp-for="Raca" class="control-label"></label>
                 <input asp-for="Raca" class="form-control" />
                 <span asp-validation-for="Raca" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Idade" class="control-label">Idade:</label>
+                <label asp-for="Idade" class="control-label"></label>
                 <input asp-for="Idade" class="form-control" />
                 <span asp-validation-for="Idade" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Cor" class="control-label">Cor:</label>
+                <label asp-for="Cor" class="control-label"></label>
                 <input asp-for="Cor" class="form-control" />
                 <span asp-validation-for="Cor" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Cidade" class="control-label">Cidade:</label>
+                <label asp-for="Cidade" class="control-label"></label>
                 <input asp-for="Cidade" class="form-control" />
                 <span asp-validation-for="Cidade" class="text-danger"></span>
             </div>
-
+            <div class="form-group">
+                <label asp-for="Imagem" class="control-label"></label>
+                <input type="file" name="imagem" asp-for="Imagem" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="UsuarioId" class="control-label"></label>
+                <select asp-for="UsuarioId" class="form-control" asp-items="ViewBag.UsuarioId"></select>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
