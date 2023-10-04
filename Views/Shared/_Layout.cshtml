@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="ism/css/my-slider.css" />
     <script src="ism/js/ism-2.2.min.js"></script>
     <link rel="shortcut icon" href="/sos-pets-branco.ico" />
+    
 </head>
 <body>
     <header>
@@ -35,7 +36,7 @@
                         </li>
                         <li class="nav-item menu-link">
                             <a class="nav-link text-light" asp-area="" asp-controller="Encontrados"
-                               asp-action="Encontrados">Encontrados</a>
+                               asp-action="Index">Encontrados</a>
                         </li>
                         <li class="nav-item menu-link">
                             <a class="nav-link text-light" asp-area="" asp-controller="Desaparecidos"
@@ -49,7 +50,7 @@
                     </ul>
 
                     
-                        <a asp-controller="Usuario" asp-action="Login" class="nav-link text-light" >Login</a>s
+                        <a asp-controller="Usuario" asp-action="Login" class="nav-link text-light" >Login</a>
 
 
                     <!--<button type="button" class="btn btn-faded btn-login">Log in</button>
@@ -95,6 +96,7 @@
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/jquery.inputmask.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)

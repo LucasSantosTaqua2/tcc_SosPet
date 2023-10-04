@@ -22,7 +22,7 @@
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <input asp-for="Tel" type="text" placeholder="Telefone" />
+                    <input asp-for="Tel" type="text" placeholder="" id="Telefone" />
                         <span asp-validation-for="Tel" class="text-danger"></span>
                     </div>
                     <div class="form-group">
@@ -37,6 +37,10 @@
         </div>
         <div class="theme-btn-container"></div>
     </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>   
+    <script src="https://rawgit.com/RobinHerbots/Inputmask/5.x/dist/jquery.inputmask.js"></script>
+
     <script type="module" src="/js/Login.js"></script>
     <script src="/_framework/aspnetcore-browser-refresh.js"></script>
 

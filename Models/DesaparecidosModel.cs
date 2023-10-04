@@ -25,6 +25,10 @@ namespace SOSPets.Models
         [Column("Data")]
         public DateTime Data { get; set; } = DateTime.Now;
 
+        [Column("Imagem")]
+        [Display(Name = "Imagem")]
+        public string Imagem { get; set; }
+
         [Column("UsuarioId")]
         [Display(Name = "UsuarioId")]
         public int UsuarioId { get; set; }

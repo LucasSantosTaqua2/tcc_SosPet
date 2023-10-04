@@ -1,12 +1,33 @@
 ﻿@model SOSPets.Models.AdocaoModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes Adoção";
 }
 
-<h1>Details</h1>
+<head>
+    <link rel="stylesheet" href="~/css/detalhes_page.css" />
+</head>
 
-<div>
+<div class="container">
+    <div class="imagem-post">
+        <img src="~/img/adocao/@Html.DisplayFor(model => model.Imagem)" alt="">
+    </div>
+    <div class="info-post">
+        <h1>@Html.DisplayFor(model => model.Nome)</h1>
+        <h4> @Html.DisplayFor(model => model.Cidade)</h4>
+        <p>Porte: @Html.DisplayFor(model => model.Porte)</p>
+        <p>Raça:  @Html.DisplayFor(model => model.Raca)</p>
+        <p>Idade: @Html.DisplayFor(model => model.Idade)</p>
+        <p>Cor: @Html.DisplayFor(model => model.Cor)</p>
+    </div>
+    <div class="contato-post">
+        <h2>Informações de contato</h2>
+        <p>@Html.DisplayFor(model => model.Usuario.Nome)</p>
+        <p>Telefone: @Html.DisplayFor(model => model.Usuario.Tel)</p>
+        <p>E-mail: @Html.DisplayFor(model => model.Usuario.Email)</p>
+    </div>
+
+<!--div>
     <h4>AdocaoModel</h4>
     <hr />
     <dl class="row">
@@ -26,19 +47,19 @@
             @Html.DisplayNameFor(model => model.Porte)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Porte)
+            
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Raca)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Raca)
+           
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Idade)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Idade)
+            
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Cor)
@@ -50,23 +71,25 @@
             @Html.DisplayNameFor(model => model.Cidade)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cidade)
+           
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Imagem)
         </dt>
         <dd class = "col-sm-10">
-            <img src="~/imagem/adocao/@Html.DisplayFor(model => model.Imagem)" />
+            <img src="~/img/adocao/" />
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Usuario)
+            Contato: 
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Usuario.Email)
+            Email: @Html.DisplayFor(model => model.Usuario.Email) <br />
+            Telefone: @Html.DisplayFor(model => model.Usuario.Tel)
         </dd>
     </dl>
 </div>
-<div>
+    <div>-->
+    
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

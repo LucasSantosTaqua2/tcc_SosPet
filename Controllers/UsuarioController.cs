@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SOSPets.Data;
 using SOSPets.Models;
+using SOSPets.Helper;
 using System.Security.Claims;
 
 namespace SOSPets.Controllers
@@ -24,32 +25,35 @@ namespace SOSPets.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(string email, string password, int id)
         {
-
-            UsuarioModel usuarioLogado = _context.UsuarioModels.Where(a => a.Email == email && a.Password == password).FirstOrDefault();
-
-            if(usuarioLogado == null)
+            try
             {
-                TempData["erro"] = "Login e senha invalidos";
+                password = password.GerarHash();
+                UsuarioModel usuarioLogado = _context.UsuarioModels.Where(a => a.Email == email && a.Password == password).FirstOrDefault();
+                if (usuarioLogado == null)
+                {
+                    TempData["erro"] = "Login e senha invalidos";
+                    return View();
+                }
+                else
+                {
+                    var claims = new List<Claim>();
+                    claims.Add(new Claim(ClaimTypes.Name, usuarioLogado.Nome));
+                    claims.Add(new Claim(ClaimTypes.Sid, usuarioLogado.Id.ToString()));
+
+
+                    var userIdentity = new ClaimsIdentity(claims, "Acesso");
+
+                    ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
+                    await HttpContext.SignInAsync("CookieAuthentication", principal, new AuthenticationProperties());
+
+                    return RedirectToAction("Index", "Home");
+                }
+            }catch
+            {
                 return View();
             }
-            else
-            {
-                var claims = new List<Claim>();
-                claims.Add(new Claim(ClaimTypes.Name, usuarioLogado.Nome));
-                claims.Add(new Claim(ClaimTypes.Sid, usuarioLogado.Id.ToString()));
 
-
-
-                var userIdentity = new ClaimsIdentity(claims, "Acesso");
-
-                ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
-                await HttpContext.SignInAsync("CookieAuthentication", principal, new AuthenticationProperties());
-
-                return RedirectToAction("Index", "Home");
-
-            }
-
-            
+           
         }
 
         // GET: Usuario
@@ -93,7 +97,7 @@ namespace SOSPets.Controllers
         {
             if (ModelState.IsValid)
             {
-               /* usuarioModel.SetSenhaHash();*/
+                usuarioModel.SetSenhaHash();
                 _context.Add(usuarioModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Login));

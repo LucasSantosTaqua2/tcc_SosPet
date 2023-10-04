@@ -32,7 +32,7 @@
 
   <ItemGroup>
     <Folder Include="Views\Cadastro\" />
-    <Folder Include="Views\Login\" />
+    <Folder Include="wwwroot\img\adocao\" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<SOSPets.Models.EncontradosModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+        @foreach (var item in Model)
+        {
+            <div class="colunaado row row-cols-4 ">
+                <div class="col">
+                    <a asp-action="Details" asp-route-id="@item.Id">
+                        <div class="card" style="width: 15rem;">
+                            <img src="~/img/encontrados/@Html.DisplayFor(modelItem => item.Imagem)" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">Encontrado</h5>
+                                <p class="card-text">
+                                    Descrição: @Html.DisplayFor(modelItem => item.Descricao)<br>
+                                    Cidade: @Html.DisplayFor(modelItem => item.Cidade)
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+            <a>Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        </td>
+
+        }
+    </tbody>
+</table>

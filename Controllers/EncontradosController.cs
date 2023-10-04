@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -13,62 +12,61 @@ using SOSPets.Models;
 
 namespace SOSPets.Controllers
 {
-    public class AdocaoController : Controller
+    public class EncontradosController : Controller
     {
         private readonly Contexto _context;
-
         private string caminhoImagem;
 
-        public AdocaoController(Contexto context, IWebHostEnvironment sistema)
+        public EncontradosController(Contexto context, IWebHostEnvironment sistema)
         {
-            _context = context;
             caminhoImagem = sistema.WebRootPath;
+            _context = context;
         }
 
-        // GET: Adocao
+        // GET: Encontrados
         public async Task<IActionResult> Index()
         {
-            var contexto = _context.AdocaoModel.Include(a => a.Usuario);
+            var contexto = _context.EncontradosModels.Include(e => e.Usuario);
             return View(await contexto.ToListAsync());
         }
 
-        // GET: Adocao/Details/5
+        // GET: Encontrados/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.AdocaoModel == null)
+            if (id == null || _context.EncontradosModels == null)
             {
                 return NotFound();
             }
 
-            var adocaoModel = await _context.AdocaoModel
-                .Include(a => a.Usuario)
+            var encontradosModel = await _context.EncontradosModels
+                .Include(e => e.Usuario)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (adocaoModel == null)
+            if (encontradosModel == null)
             {
                 return NotFound();
             }
 
-            return View(adocaoModel);
+            return View(encontradosModel);
         }
 
-        // GET: Adocao/Create
+        // GET: Encontrados/Create
         [Authorize(AuthenticationSchemes = "CookieAuthentication")]
         public IActionResult Create()
         {
-            /* var claimIdUser = User.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Sid).FirstOrDefault(); 
-             ViewData["UsuarioId"] = claimIdUser; */
-            ViewData["UsuarioId"] = new SelectList (_context.UsuarioModels, "Id", "Id");
+            ViewData["UsuarioId"] = new SelectList(_context.UsuarioModels, "Id", "Id");
             return View();
         }
 
-
+        // POST: Encontrados/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(AdocaoModel adocaoModel, IFormFile imagem)
+        public async Task<IActionResult> Create(EncontradosModel encontradosModel, IFormFile imagem)
         {
-            /* int usuarioId = Convert.ToInt32(User.FindFirstValue("Sid")); */
+           /* int usuarioId = Convert.ToInt32(User.FindFirstValue("Sid")); */
 
-            string caminhoSalvarImg = caminhoImagem + "\\img\\adocao\\";
+            string caminhoSalvarImg = caminhoImagem + "\\img\\encontrados\\";
             string nomeImg = Guid.NewGuid() + "_" + imagem.FileName;
 
             if (!Directory.Exists(caminhoSalvarImg))
@@ -81,12 +79,12 @@ namespace SOSPets.Controllers
                 await imagem.CopyToAsync(stream);
             }
 
-            adocaoModel.Imagem = nomeImg;
+            encontradosModel.Imagem = nomeImg;
             /*encontradosModel.UsuarioId = usuarioId;*/
 
-            ViewData["UsuarioId"] = new SelectList(_context.UsuarioModels, "Id", "Id", adocaoModel.UsuarioId);
+            ViewData["UsuarioId"] = new SelectList(_context.UsuarioModels, "Id", "Id", encontradosModel.UsuarioId);
 
-            _context.Add(adocaoModel);
+            _context.Add(encontradosModel);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
 
@@ -99,31 +97,31 @@ namespace SOSPets.Controllers
             /*return View(encontradosModel);*/
         }
 
-        // GET: Adocao/Edit/5
+        // GET: Encontrados/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.AdocaoModel == null)
+            if (id == null || _context.EncontradosModels == null)
             {
                 return NotFound();
             }
 
-            var adocaoModel = await _context.AdocaoModel.FindAsync(id);
-            if (adocaoModel == null)
+            var encontradosModel = await _context.EncontradosModels.FindAsync(id);
+            if (encontradosModel == null)
             {
                 return NotFound();
             }
-            ViewData["UsuarioId"] = new SelectList(_context.UsuarioModels, "Id", "Email", adocaoModel.UsuarioId);
-            return View(adocaoModel);
+            ViewData["UsuarioId"] = new SelectList(_context.UsuarioModels, "Id", "Email", encontradosModel.UsuarioId);
+            return View(encontradosModel);
         }
 
-        // POST: Adocao/Edit/5
+        // POST: Encontrados/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Peso,Porte,Raca,Idade,Cor,Cidade,Data,UsuarioId")] AdocaoModel adocaoModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Descricao,Cidade,Data,Imagem,UsuarioId")] EncontradosModel encontradosModel)
         {
-            if (id != adocaoModel.Id)
+            if (id != encontradosModel.Id)
             {
                 return NotFound();
             }
@@ -132,12 +130,12 @@ namespace SOSPets.Controllers
             {
                 try
                 {
-                    _context.Update(adocaoModel);
+                    _context.Update(encontradosModel);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AdocaoModelExists(adocaoModel.Id))
+                    if (!EncontradosModelExists(encontradosModel.Id))
                     {
                         return NotFound();
                     }
@@ -148,51 +146,51 @@ namespace SOSPets.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UsuarioId"] = new SelectList(_context.UsuarioModels, "Id", "Email", adocaoModel.UsuarioId);
-            return View(adocaoModel);
+            ViewData["UsuarioId"] = new SelectList(_context.UsuarioModels, "Id", "Email", encontradosModel.UsuarioId);
+            return View(encontradosModel);
         }
 
-        // GET: Adocao/Delete/5
+        // GET: Encontrados/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.AdocaoModel == null)
+            if (id == null || _context.EncontradosModels == null)
             {
                 return NotFound();
             }
 
-            var adocaoModel = await _context.AdocaoModel
-                .Include(a => a.Usuario)
+            var encontradosModel = await _context.EncontradosModels
+                .Include(e => e.Usuario)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (adocaoModel == null)
+            if (encontradosModel == null)
             {
                 return NotFound();
             }
 
-            return View(adocaoModel);
+            return View(encontradosModel);
         }
 
-        // POST: Adocao/Delete/5
+        // POST: Encontrados/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.AdocaoModel == null)
+            if (_context.EncontradosModels == null)
             {
-                return Problem("Entity set 'Contexto.AdocaoModel'  is null.");
+                return Problem("Entity set 'Contexto.EncontradosModels'  is null.");
             }
-            var adocaoModel = await _context.AdocaoModel.FindAsync(id);
-            if (adocaoModel != null)
+            var encontradosModel = await _context.EncontradosModels.FindAsync(id);
+            if (encontradosModel != null)
             {
-                _context.AdocaoModel.Remove(adocaoModel);
+                _context.EncontradosModels.Remove(encontradosModel);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AdocaoModelExists(int id)
+        private bool EncontradosModelExists(int id)
         {
-          return (_context.AdocaoModel?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.EncontradosModels?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
