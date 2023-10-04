@@ -68,6 +68,7 @@ namespace SOSPets.Controllers
         {
             /* int usuarioId = Convert.ToInt32(User.FindFirstValue("Sid")); */
 
+            int userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.Sid));
             string caminhoSalvarImg = caminhoImagem + "\\img\\adocao\\";
             string nomeImg = Guid.NewGuid() + "_" + imagem.FileName;
 
@@ -82,7 +83,7 @@ namespace SOSPets.Controllers
             }
 
             adocaoModel.Imagem = nomeImg;
-            /*encontradosModel.UsuarioId = usuarioId;*/
+            adocaoModel.UsuarioId = userId;
 
             ViewData["UsuarioId"] = new SelectList(_context.UsuarioModels, "Id", "Id", adocaoModel.UsuarioId);
 
