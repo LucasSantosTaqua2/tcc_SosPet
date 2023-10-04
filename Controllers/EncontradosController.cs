@@ -53,7 +53,6 @@ namespace SOSPets.Controllers
         [Authorize(AuthenticationSchemes = "CookieAuthentication")]
         public IActionResult Create()
         {
-            ViewData["UsuarioId"] = new SelectList(_context.UsuarioModels, "Id", "Id");
             return View();
         }
 
@@ -64,10 +63,10 @@ namespace SOSPets.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(EncontradosModel encontradosModel, IFormFile imagem)
         {
-           /* int usuarioId = Convert.ToInt32(User.FindFirstValue("Sid")); */
 
             string caminhoSalvarImg = caminhoImagem + "\\img\\encontrados\\";
             string nomeImg = Guid.NewGuid() + "_" + imagem.FileName;
+            int userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.Sid));
 
             if (!Directory.Exists(caminhoSalvarImg))
             {
@@ -80,9 +79,7 @@ namespace SOSPets.Controllers
             }
 
             encontradosModel.Imagem = nomeImg;
-            /*encontradosModel.UsuarioId = usuarioId;*/
-
-            ViewData["UsuarioId"] = new SelectList(_context.UsuarioModels, "Id", "Id", encontradosModel.UsuarioId);
+            encontradosModel.UsuarioId = userId;
 
             _context.Add(encontradosModel);
             await _context.SaveChangesAsync();

@@ -51,7 +51,7 @@
 
                     @if (User.Identity.IsAuthenticated == true)
                     {
-                        <a asp-controller="Usuario" asp-action="Details" class="nav-link text-light">@User.Identity.Name</a>
+                        <a href="/Usuario/Details/@User.FindFirstValue(ClaimTypes.Sid)" class="nav-link text-light">@User.Identity.Name</a>
 
                     } else{
                         <a asp-controller="Usuario" asp-action="Login" class="nav-link text-light" >Login</a>

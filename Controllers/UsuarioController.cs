@@ -5,6 +5,7 @@ using SOSPets.Data;
 using SOSPets.Models;
 using SOSPets.Helper;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SOSPets.Controllers
 {
@@ -65,6 +66,7 @@ namespace SOSPets.Controllers
         }
 
         // GET: Usuario/Details/5
+        [Authorize(AuthenticationSchemes = "CookieAuthentication")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.UsuarioModels == null)

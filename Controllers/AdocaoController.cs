@@ -69,6 +69,8 @@ namespace SOSPets.Controllers
             /* int usuarioId = Convert.ToInt32(User.FindFirstValue("Sid")); */
 
             int userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.Sid));
+
+
             string caminhoSalvarImg = caminhoImagem + "\\img\\adocao\\";
             string nomeImg = Guid.NewGuid() + "_" + imagem.FileName;
 
