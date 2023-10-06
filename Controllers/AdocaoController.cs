@@ -87,19 +87,9 @@ namespace SOSPets.Controllers
             adocaoModel.Imagem = nomeImg;
             adocaoModel.UsuarioId = userId;
 
-            ViewData["UsuarioId"] = new SelectList(_context.UsuarioModels, "Id", "Id", adocaoModel.UsuarioId);
-
             _context.Add(adocaoModel);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-
-            /*if (ModelState.IsValid)
-            {
-                _context.Add(encontradosModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }*/
-            /*return View(encontradosModel);*/
         }
 
         // GET: Adocao/Edit/5
@@ -115,7 +105,7 @@ namespace SOSPets.Controllers
             {
                 return NotFound();
             }
-            ViewData["UsuarioId"] = new SelectList(_context.UsuarioModels, "Id", "Email", adocaoModel.UsuarioId);
+
             return View(adocaoModel);
         }
 
@@ -124,7 +114,7 @@ namespace SOSPets.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Peso,Porte,Raca,Idade,Cor,Cidade,Data,UsuarioId")] AdocaoModel adocaoModel)
+        public async Task<IActionResult> Edit(int id, AdocaoModel adocaoModel)
         {
             if (id != adocaoModel.Id)
             {

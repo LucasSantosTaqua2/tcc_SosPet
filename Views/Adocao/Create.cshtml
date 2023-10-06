@@ -1,7 +1,7 @@
 ﻿@model SOSPets.Models.AdocaoModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Cadastrar Adoção";
 }
 
 <h1>Create</h1>
@@ -49,7 +49,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Imagem" class="control-label"></label>
-                <input type="file" name="imagem" asp-for="Imagem" class="form-control" />
+                <input type="file" accept="image/*" name="imagem" asp-for="Imagem" class="form-control" />
             </div>
            <!-- <div class="form-group">
                 <label asp-for="UsuarioId" class="control-label"></label>

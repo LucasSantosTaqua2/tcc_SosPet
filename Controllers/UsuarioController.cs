@@ -81,7 +81,13 @@ namespace SOSPets.Controllers
                 return NotFound();
             }
 
-            return View(usuarioModel);
+            if (id == Convert.ToInt32(User.FindFirstValue(ClaimTypes.Sid)))
+            {
+                return View(usuarioModel);
+            } else
+            {
+                return Unauthorized();  
+            }
         }
 
         // GET: Usuario/Create
