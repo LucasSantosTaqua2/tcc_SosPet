@@ -46,7 +46,11 @@
 .info-post{
     margin-right: 200px;
     text-align: start;
-}
+    padding-right: 80px;
+} .info-post p {
+      width:100%; 
+      height: 100%;
+  }
 
 .contato-post{
     border: 1px solid black;
@@ -56,4 +60,19 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+}
+.contato-post a{
+    margin-top: 50px;
+}
+
+
+.info-contato{
+    color: black;
+    margin-top: 40px;
+    font-size: 13pt;
+    font-weight: 600;
+}
+
+.btn-voltar{
+    border: 1px solid black;
 }

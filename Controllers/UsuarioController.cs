@@ -71,14 +71,14 @@ namespace SOSPets.Controllers
         {
             if (id == null || _context.UsuarioModels == null)
             {
-                return NotFound();
+                return RedirectToAction("ErroView", "Erro");
             }
 
             var usuarioModel = await _context.UsuarioModels
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (usuarioModel == null)
             {
-                return NotFound();
+                return RedirectToAction("ErroView", "Erro");
             }
 
             if (id == Convert.ToInt32(User.FindFirstValue(ClaimTypes.Sid)))
@@ -86,7 +86,7 @@ namespace SOSPets.Controllers
                 return View(usuarioModel);
             } else
             {
-                return Unauthorized();  
+                return RedirectToAction("ErroView", "Erro");  
             }
         }
 
@@ -134,19 +134,21 @@ namespace SOSPets.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Email,Tel,Password")] UsuarioModel usuarioModel)
+        public IActionResult Edit(int id, UsuarioModel usuarioModel)
         {
             if (id != usuarioModel.Id)
             {
-                return NotFound();
+                return RedirectToAction("ErroView", "Erro");
             }
 
-            if (ModelState.IsValid)
+            _context.Update(usuarioModel);
+            _context.SaveChanges();
+            return RedirectToAction("Details", "Usuario");
+
+            /*if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(usuarioModel);
-                    await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -160,8 +162,7 @@ namespace SOSPets.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
-            return View(usuarioModel);
+            }*/
         }
 
         // GET: Usuario/Delete/5

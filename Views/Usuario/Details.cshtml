@@ -1,12 +1,37 @@
 ﻿@model SOSPets.Models.UsuarioModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes da conta";
 }
 
-<h1>Details</h1>
+<link rel="stylesheet" href="~/css/user_page.css" />
 
-<div>
+    <div class="container-user">
+        <h1>@Html.DisplayFor(model => model.Nome)</h1>
+
+        <br>
+
+        <div class="dados-user">
+            <input type="hidden" asp-for="Id" />
+            <div class="input-user-dados">
+                <label for="">Email:  </label>
+                <input asp-for="Email" readonly class="form-control" />
+            </div>
+            <div class="input-user-dados">
+                <label for="">Telefone:  </label>
+                <input asp-for="Tel" readonly class="form-control" />
+            </div>
+        </div>
+
+        <div class="btn-options-user">
+            <a asp-action="Edit" asp-route-id="@Model?.Id" name="id" role="button" class="btn btn-primary">Editar Dados</a>
+            <a href="" role="button" class="btn btn-danger">Excluir Conta</a>
+        </div>
+    </div>
+
+
+
+<!--<div>
     <h4>UsuarioModel</h4>
     <hr />
     <dl class="row">
@@ -14,19 +39,19 @@
             @Html.DisplayNameFor(model => model.Nome)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nome)
+            
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Email)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
+            
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Tel)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Tel)
+            
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Password)
@@ -37,6 +62,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a >Edit</a> |
     <a asp-action="Index">Back to List</a>
-</div>
+</div>-->

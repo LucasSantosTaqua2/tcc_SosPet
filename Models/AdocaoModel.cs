@@ -32,13 +32,17 @@ namespace SOSPets.Models
         [Display(Name = "Porte")]
         public string Porte { get; set; }
 
+        [Column("Sexo")]
+        [Display(Name = "Sexo")]
+        public string Sexo { get; set; }
+
         [Column("Raca")]
         [Display(Name = "Raca")]
         public string Raca { get; set;}
 
         [Column("Idade")]
         [Display(Name = "Idade")]
-        public int Idade { get; set; }
+        public string Idade { get; set; }
 
         [Column("Cor")]
         [Display(Name = "Cor")]

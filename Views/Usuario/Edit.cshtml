@@ -1,16 +1,46 @@
 ﻿@model SOSPets.Models.UsuarioModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Conta";
 }
 
-<h1>Edit</h1>
+<link rel="stylesheet" href="~/css/user_page.css" />
 
-<h4>UsuarioModel</h4>
+
+<div class="container-user">
+    <h1>@Html.DisplayFor(model => model.Nome)</h1>
+
+    <br>
+
+    <form asp-action="Edit">
+    <div class="dados-user">
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="Nome" />
+        <input type="hidden" asp-for="Password" />
+        <div class="input-user-dados">
+            <label for="">Email:  </label>
+            <input asp-for="Email" name="email" class="form-control" />
+        </div>
+        <div class="input-user-dados">
+            <label for="">Telefone:  </label>
+            <input asp-for="Tel" name="tel" class="form-control" />
+        </div>
+    </div>
+        <div class="form-group">
+            <input type="submit" value="Salvar" class="btn btn-primary" />
+        </div>
+    </form>
+    <div class="btn-options-user">
+        <a asp-action="Edit" asp-route-id="@Model?.Id" role="button" class="btn btn-primary">Editar Dados</a>
+        <a href="" role="button" class="btn btn-danger">Excluir Conta</a>
+    </div>
+</div>
+
+
+<!--<h4>UsuarioModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
@@ -33,17 +63,11 @@
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
     </div>
-</div>
+</div>-->
+
 
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

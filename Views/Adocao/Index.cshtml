@@ -4,30 +4,31 @@
     ViewData["Title"] = "Central de Adoções";
 }
 
-<p>
-    <a class="btn btn-success" asp-action="Create">Cadastrar novo animal para adoção</a>
-</p>
+<h1 class="text-center">Central de Adoções</h1>
+
+<a class="btn btn-success" role="button" asp-action="Create">Cadastrar novo animal para adoção</a>
 
 
             <div class="colunaado row row-cols-4 ">
               
 @foreach (var item in Model) {
                 <div class="row">
-                    <a asp-action="Details" asp-route-id="@item.Id">
-                    <div class="card" style="width: 15rem;">
+
+                    <div class="card ">
                     <img src="~/img/adocao/@Html.DisplayFor(modelItem => item.Imagem)" class="card-img-top">
                         <div class="card-body">
-                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Nome)</h5>
+                            <h5 class="card-title text-center">@Html.DisplayFor(modelItem => item.Nome)</h5>
                             <p class="card-text">   
                                 Raça: @Html.DisplayFor(modelItem => item.Raca)<br>
+                                Sexo: @Html.DisplayFor(modelItem => item.Sexo)<br>
                                 Idade: @Html.DisplayFor(modelItem => item.Idade)<br>
-                                Cor:@Html.DisplayFor(modelItem => item.Cor)<br>
+                                Cor: @Html.DisplayFor(modelItem => item.Cor)<br>
                                 Porte: @Html.DisplayFor(modelItem => item.Porte)<br>
                                 Cidade: @Html.DisplayFor(modelItem => item.Cidade)
                             </p>
                         </div>
+                            <a class="btn btn-primary align-items-center" role="button" asp-action="Details" asp-route-id="@item.Id">Quero adotar</a>
                     </div>
-                    </a>
 
                 </div>
        <!--     <td>

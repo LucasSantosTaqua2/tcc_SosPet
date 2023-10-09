@@ -14,18 +14,26 @@
     </div>
     <div class="info-post">
         <h1>@Html.DisplayFor(model => model.Nome)</h1>
-        <h4> @Html.DisplayFor(model => model.Cidade)</h4>
-        <p>Porte: @Html.DisplayFor(model => model.Porte)</p>
-        <p>Raça:  @Html.DisplayFor(model => model.Raca)</p>
-        <p>Idade: @Html.DisplayFor(model => model.Idade)</p>
-        <p>Cor: @Html.DisplayFor(model => model.Cor)</p>
+        <h5> @Html.DisplayFor(model => model.Cidade)</h5>
+        <p>
+           Raça:  @Html.DisplayFor(model => model.Raca) <br />
+           Sexo:  @Html.DisplayFor(model => model.Sexo) <br />
+           Idade: @Html.DisplayFor(model => model.Idade) <br />
+           Cor: @Html.DisplayFor(model => model.Cor)  <br />
+           Porte: @Html.DisplayFor(model => model.Porte)
+        </p>
     </div>
     <div class="contato-post">
         <h2>Informações de contato</h2>
-        <p>@Html.DisplayFor(model => model.Usuario.Nome)</p>
-        <p>Telefone: @Html.DisplayFor(model => model.Usuario.Tel)</p>
-        <p>E-mail: @Html.DisplayFor(model => model.Usuario.Email)</p>
+        <p class="info-contato">@Html.DisplayFor(model => model.Usuario.Nome)<br />
+           Telefone: @Html.DisplayFor(model => model.Usuario.Tel)<br />
+           E-mail: @Html.DisplayFor(model => model.Usuario.Email)</p>
+        <a asp-action="Index" role="button" class="btn-voltar btn btn-light">Voltar para a central</a> 
     </div>
+
+    <!-- <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> -->
+
+
 
 <!--div>
     <h4>AdocaoModel</h4>
@@ -90,6 +98,4 @@
 </div>
     <div>-->
     
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
 </div>
