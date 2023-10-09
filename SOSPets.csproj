@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\css\adocao.css" />
+    <None Include="wwwroot\css\adocao_page.css" />
     <None Include="wwwroot\css\contatos.css" />
     <None Include="wwwroot\css\desaparecidos.css" />
     <None Include="wwwroot\css\encontrados.css" />

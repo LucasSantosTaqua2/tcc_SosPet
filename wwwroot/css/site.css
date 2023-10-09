@@ -29,6 +29,9 @@ body {
     border: 5px solid white;
     height: 70vh;
     overflow: hidden;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 .fundo-img {
     background-image: url("../img/img_home.jpg");
