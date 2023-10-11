@@ -1,20 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 
- /*body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #F5DEB3;
-    margin-bottom: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-} */
-
 .container{
     border: 4px solid rgba(0, 0, 0, .2);
     border-radius: 5px;
@@ -26,7 +12,7 @@
     align-items: center;
 }
 
-.imagem-post{
+.imagem-post {
     border: 3px solid #9c815d;
     background-color: #fff;
     width: 30vw;
@@ -47,10 +33,14 @@
     margin-right: 200px;
     text-align: start;
     padding-right: 80px;
-} .info-post p {
-      width:100%; 
-      height: 100%;
-  }
+    
+}
+    .info-post p {
+        border-top: 1px solid black;
+        margin-top: 20px;
+        width: 100%;
+        height: 100%;
+    }
 
 .contato-post{
     border: 1px solid black;

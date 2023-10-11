@@ -26,7 +26,7 @@ namespace SOSPets.Controllers
         }
 
         // GET: Adocao
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> CentralDeAdocoes()
         {
             var contexto = _context.AdocaoModel.Include(a => a.Usuario);
             return View(await contexto.ToListAsync());
@@ -53,7 +53,7 @@ namespace SOSPets.Controllers
 
         // GET: Adocao/Create
         [Authorize(AuthenticationSchemes = "CookieAuthentication")]
-        public IActionResult Create()
+        public IActionResult CadastrarAdocao()
         {
             /* var claimIdUser = User.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Sid).FirstOrDefault(); 
              ViewData["UsuarioId"] = claimIdUser; */
@@ -64,7 +64,7 @@ namespace SOSPets.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(AdocaoModel adocaoModel, IFormFile imagem)
+        public async Task<IActionResult> CadastrarAdocao(AdocaoModel adocaoModel, IFormFile imagem)
         {
             /* int usuarioId = Convert.ToInt32(User.FindFirstValue("Sid")); */
 

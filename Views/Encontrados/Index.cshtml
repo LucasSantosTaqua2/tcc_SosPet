@@ -1,40 +1,37 @@
 ﻿@model IEnumerable<SOSPets.Models.EncontradosModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Central de Animais Encontrados";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-        @foreach (var item in Model)
-        {
-            <div class="colunaado row row-cols-4 ">
-                <div class="col">
-                    <a asp-action="Details" asp-route-id="@item.Id">
-                        <div class="card" style="width: 15rem;">
-                            <img src="~/img/encontrados/@Html.DisplayFor(modelItem => item.Imagem)" class="card-img-top">
-                            <div class="card-body">
-                                <h5 class="card-title">Encontrado</h5>
-                                <p class="card-text">
-                                    Descrição: @Html.DisplayFor(modelItem => item.Descricao)<br>
-                                    Cidade: @Html.DisplayFor(modelItem => item.Cidade)
-                                </p>
-                            </div>
-                        </div>
-                    </a>
+<link rel="stylesheet" href="~/css/encontrados_page.css" />
 
+<div class="banner text-center">
+    <h1 class="text-center" id="title">Central de Animais Encontrados</h1>
+    <p>Bem-vindo(a) a nossa Central de Animais Encontrados, aqui você encontra animaizinhos que se encontravam perdidos pelas ruas.</p>
+    <a class="btn btn-success" role="button" asp-action="Create">Cadastrar novo animal encontrado</a>
+</div>
+
+
+<div class="coluna-post row row-cols-4 ">
+
+    @foreach (var item in Model)
+    {
+        <div class="row">
+
+            <div class="card ">
+                <img src="~/img/encontrados/@Html.DisplayFor(modelItem => item.Imagem)" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Encontrado</h5>
+                    <p class="card-text">
+                        Descrição: @Html.DisplayFor(modelItem => item.Descricao)<br>
+                        Cidade: @Html.DisplayFor(modelItem => item.Cidade)
+                    </p>
                 </div>
+                <a class="btn btn-primary align-items-center" role="button" asp-action="Details" asp-route-id="@item.Id">Este animal é meu</a>
             </div>
-        <td>
-            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-            <a>Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-        </td>
 
-        }
-    </tbody>
-</table>
+        </div>
+    }
+</div>

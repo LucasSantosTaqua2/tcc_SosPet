@@ -1,10 +1,36 @@
 ﻿@model SOSPets.Models.EncontradosModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes do animal encontrado";
 }
 
-<h1>Details</h1>
+<head>
+    <link rel="stylesheet" href="~/css/detalhes_page.css" />
+</head>
+
+<div class="container">
+    <div class="imagem-post">
+        <img src="~/img/encontrados/@Html.DisplayFor(model => model.Imagem)" alt="">
+    </div>
+    <div class="info-post">
+        <h3>Encontrado</h3>
+        <h5> @Html.DisplayFor(model => model.Cidade)</h5>
+        <p>
+            Descrição: @Html.DisplayFor(model => model.Descricao)
+        </p>
+    </div>
+    <div class="contato-post">
+        <h2>Informações de contato</h2>
+        <p class="info-contato">
+            @Html.DisplayFor(model => model.Usuario.Nome)<br />
+            Telefone: @Html.DisplayFor(model => model.Usuario.Tel)<br />
+            E-mail: @Html.DisplayFor(model => model.Usuario.Email)
+        </p>
+        <a asp-action="Index" role="button" class="btn-voltar btn btn-light">Voltar para a central</a>
+    </div>
+</div>
+
+<!-- <h1>Details</h1>
 
 <div>
     <h4>EncontradosModel</h4>
@@ -20,7 +46,7 @@
             @Html.DisplayNameFor(model => model.Cidade)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cidade)
+            
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Data)
@@ -49,4 +75,4 @@
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
-</div>
+</div> -->

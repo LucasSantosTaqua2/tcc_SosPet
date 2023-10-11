@@ -149,7 +149,9 @@ a{
 .card-img-top{
     height: 200px;
 }
-.colunaado{
+.coluna-post{
+    align-items: center;
+    justify-content: center;
     margin-top: 2%;
     margin-left: 3%;
     margin-bottom: 2%;
@@ -160,16 +162,14 @@ a{
     border-radius: 10px;
     width: 280px;
     margin-right: 2%;
-    /*background-color: rgb();*/
+    margin-top: 20px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
     color: black;
-  }
-  
-.card {
     transition: transform 0.5s;
     transform:translateX(1) scale(0);
     margin-bottom: 2%;
   }
+  
   
 .card:hover {
    transform:translateX(0px) scale(1.1); 

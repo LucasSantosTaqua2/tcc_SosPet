@@ -103,14 +103,19 @@ namespace SOSPets.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Cadastro([Bind("Id,Nome,Email,Tel,Password")] UsuarioModel usuarioModel)
         {
-            if (ModelState.IsValid)
+            
+            if (_context.UsuarioModels.Where(w => w.Email == usuarioModel.Email).FirstOrDefault() == null)
             {
                 usuarioModel.SetSenhaHash();
                 _context.Add(usuarioModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Login));
+            } else
+            {
+                ModelState.AddModelError("", "E-mail já cadastrado");
+                return View();
             }
-            return View(usuarioModel);
+            /*return View(usuarioModel); */
         }
 
         // GET: Usuario/Edit/5
