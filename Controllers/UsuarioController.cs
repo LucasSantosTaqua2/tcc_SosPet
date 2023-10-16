@@ -6,6 +6,7 @@ using SOSPets.Models;
 using SOSPets.Helper;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace SOSPets.Controllers
 {
@@ -55,6 +56,13 @@ namespace SOSPets.Controllers
             }
 
            
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(); 
+
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Usuario
