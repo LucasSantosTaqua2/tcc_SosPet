@@ -25,7 +25,7 @@
 
         <div class="btn-options-user">
             <a asp-action="Edit" asp-route-id="@Model?.Id" name="id" role="button" class="btn btn-primary">Editar Dados</a>
-            <a href="" role="button" class="btn btn-danger">Excluir Conta</a>
+            <a asp-action="Delete" asp-route-id="@Model?.Id" role="button" class="btn btn-danger">Excluir Conta</a>
             <a asp-action="Logout" role="button" class="btn btn-secondary">Deslogar</a>
         </div>
     </div>

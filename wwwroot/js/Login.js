@@ -27,3 +27,7 @@ const displayThemeButtons = () => {
 };
 
 displayThemeButtons();
+
+$("Telefone").keypress(function () {
+    $(this).mask('(__) ____-_____');
+});

@@ -24,14 +24,14 @@ namespace SOSPets.Controllers
         }
 
         // GET: Encontrados
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> CentralEncontrados()
         {
             var contexto = _context.EncontradosModels.Include(e => e.Usuario);
             return View(await contexto.ToListAsync());
         }
 
         // GET: Encontrados/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Detalhes(int? id)
         {
             if (id == null || _context.EncontradosModels == null)
             {
@@ -51,7 +51,7 @@ namespace SOSPets.Controllers
 
         // GET: Encontrados/Create
         [Authorize(AuthenticationSchemes = "CookieAuthentication")]
-        public IActionResult Create()
+        public IActionResult CadastrarEncontrado()
         {
             return View();
         }
@@ -61,7 +61,7 @@ namespace SOSPets.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(EncontradosModel encontradosModel, IFormFile imagem)
+        public async Task<IActionResult> CadastrarEncontrado(EncontradosModel encontradosModel, IFormFile imagem)
         {
 
             string caminhoSalvarImg = caminhoImagem + "\\img\\encontrados\\";
@@ -83,7 +83,7 @@ namespace SOSPets.Controllers
 
             _context.Add(encontradosModel);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(CentralEncontrados));
 
             /*if (ModelState.IsValid)
             {

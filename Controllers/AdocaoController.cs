@@ -26,14 +26,20 @@ namespace SOSPets.Controllers
         }
 
         // GET: Adocao
-        public async Task<IActionResult> CentralDeAdocoes()
+        public async Task<IActionResult> CentralDeAdocoes(string buscaPet)
         {
-            var contexto = _context.AdocaoModel.Include(a => a.Usuario);
+            var contexto = _context.AdocaoModel.Include(a => a.Usuario).OrderByDescending(a => a.Data);
+
+            if (!String.IsNullOrWhiteSpace(buscaPet))
+            {
+                contexto = (IOrderedQueryable<AdocaoModel>)contexto.Where(b => b.Sexo.Contains(buscaPet) || b.Nome.Contains(buscaPet) || b.Porte.Contains(buscaPet) || b.Raca.Contains(buscaPet) || b.Idade.Contains(buscaPet) || b.Cor.Contains(buscaPet) || b.Cidade.Contains(buscaPet));
+            }
+
             return View(await contexto.ToListAsync());
         }
 
         // GET: Adocao/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Detalhes(int? id)
         {
             if (id == null || _context.AdocaoModel == null)
             {
@@ -89,7 +95,7 @@ namespace SOSPets.Controllers
 
             _context.Add(adocaoModel);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(CentralDeAdocoes));
         }
 
         // GET: Adocao/Edit/5

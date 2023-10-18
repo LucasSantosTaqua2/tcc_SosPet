@@ -183,7 +183,8 @@ namespace SOSPets.Controllers
         {
             _context.UsuarioModels.Remove(_context.UsuarioModels.Where(a => a.Id == id).FirstOrDefault());
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Index", "Home");
 
         }
 

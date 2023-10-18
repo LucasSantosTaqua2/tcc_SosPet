@@ -10,7 +10,7 @@
 <div class="banner text-center">
     <h1 class="text-center" id="title">Central de Animais Encontrados</h1>
     <p>Bem-vindo(a) a nossa Central de Animais Encontrados, aqui você encontra animaizinhos que se encontravam perdidos pelas ruas.</p>
-    <a class="btn btn-success" role="button" asp-action="Create">Cadastrar novo animal encontrado</a>
+    <a class="btn btn-success" role="button" asp-action="CadastrarEncontrado">Cadastrar novo animal encontrado</a>
 </div>
 
 
@@ -29,7 +29,7 @@
                         Cidade: @Html.DisplayFor(modelItem => item.Cidade)
                     </p>
                 </div>
-                <a class="btn btn-primary align-items-center" role="button" asp-action="Details" asp-route-id="@item.Id">Este animal é meu</a>
+                <a class="btn btn-primary align-items-center" role="button" asp-action="Detalhes" asp-route-id="@item.Id">Este animal é meu</a>
             </div>
 
         </div>
