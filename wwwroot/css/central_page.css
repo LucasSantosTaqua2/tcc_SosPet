@@ -1,0 +1,13 @@
+﻿.banner{
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.busca {
+    display: inline;
+}
+
+.barra-busca {
+    margin-top: 50px !important;
+}

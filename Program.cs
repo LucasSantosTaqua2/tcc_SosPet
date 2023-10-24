@@ -16,6 +16,11 @@ builder.Services.AddAuthentication("CookieAuthentication").AddCookie("CookieAuth
     option.AccessDeniedPath = "/Usuario/Erro";
 });
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+});
+
 var app = builder.Build();
 
 

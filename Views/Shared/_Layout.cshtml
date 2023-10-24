@@ -10,14 +10,14 @@
     <link rel="stylesheet" href="~/SOSPets.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="ism/css/my-slider.css" />
     <script src="ism/js/ism-2.2.min.js"></script>
-    <link rel="shortcut icon" href="/sos-pets-branco.ico" />
+    <link rel="shortcut icon" href="~/img/sos-pets-icone.ico" />
     
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-faded border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <img src="/img/sos-pets-branco.png" alt="" style="height: 12vh;margin-right: 1%;">
+                <a asp-controller="Home" asp-action="Index"><img src="/img/sos-pets-branco.png" alt="" style="height: 12vh;margin-right: 1%;"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -40,7 +40,7 @@
                         </li>
                         <li class="nav-item menu-link">
                             <a class="nav-link text-light" asp-area="" asp-controller="Desaparecidos"
-                               asp-action="Desaparecidos">Desaparecidos</a>
+                               asp-action="CentralDesaparecidos">Desaparecidos</a>
                         </li>
                         <li class="nav-item menu-link">
                             <a class="nav-link text-light" asp-area="" asp-controller="Contatos"

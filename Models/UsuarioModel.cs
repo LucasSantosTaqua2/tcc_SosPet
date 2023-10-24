@@ -33,6 +33,9 @@ namespace SOSPets.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
+        [Column("Is_Admin")]
+        public bool Is_Admin { get; set; }
+
         public void SetSenhaHash()
         {
             Password = Password.GerarHash();

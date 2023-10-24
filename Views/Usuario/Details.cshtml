@@ -27,8 +27,13 @@
             <a asp-action="Edit" asp-route-id="@Model?.Id" name="id" role="button" class="btn btn-primary">Editar Dados</a>
             <a asp-action="Delete" asp-route-id="@Model?.Id" role="button" class="btn btn-danger">Excluir Conta</a>
             <a asp-action="Logout" role="button" class="btn btn-secondary">Deslogar</a>
+            @if (User.IsInRole("Admin"))
+            {
+               <a class="btn btn-light" asp-controller="Usuario" asp-action="Index">Central de Usuarios</a>
+            } 
         </div>
     </div>
+
 
 
 

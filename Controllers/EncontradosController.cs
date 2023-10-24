@@ -24,9 +24,15 @@ namespace SOSPets.Controllers
         }
 
         // GET: Encontrados
-        public async Task<IActionResult> CentralEncontrados()
+        public async Task<IActionResult> CentralEncontrados(string buscaPet)
         {
-            var contexto = _context.EncontradosModels.Include(e => e.Usuario);
+            var contexto = _context.EncontradosModels.Include(a => a.Usuario).OrderByDescending(a => a.Data);
+
+            if (!String.IsNullOrWhiteSpace(buscaPet))
+            {
+                contexto = (IOrderedQueryable<EncontradosModel>)contexto.Where(b => b.Cidade.Contains(buscaPet) || b.Descricao.Contains(buscaPet));
+            }
+
             return View(await contexto.ToListAsync());
         }
 

@@ -25,7 +25,7 @@ namespace SOSPets.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(string email, string password, int id)
+        public async Task<IActionResult> Login(string email, string password, int id, UsuarioModel usuarioModel)
         {
             try
             {
@@ -41,6 +41,13 @@ namespace SOSPets.Controllers
                     var claims = new List<Claim>();
                     claims.Add(new Claim(ClaimTypes.Name, usuarioLogado.Nome));
                     claims.Add(new Claim(ClaimTypes.Sid, usuarioLogado.Id.ToString()));
+                    if( usuarioModel.Is_Admin == true)
+                    {
+                        claims.Add(new Claim(ClaimTypes.Role, "Admin"));
+                    } else
+                    {
+                        claims.Add(new Claim(ClaimTypes.Role, "User"));
+                    }
 
 
                     var userIdentity = new ClaimsIdentity(claims, "Acesso");
@@ -68,9 +75,16 @@ namespace SOSPets.Controllers
         // GET: Usuario
         public async Task<IActionResult> Index()
         {
+            if(User.IsInRole("Admin"))
+            {
               return _context.UsuarioModels != null ? 
                           View(await _context.UsuarioModels.ToListAsync()) :
                           Problem("Entity set 'Contexto.UsuarioModels'  is null.");
+
+            } else
+            {
+                return RedirectToAction("ErroView", "Erro");
+            }
         }
 
         // GET: Usuario/Details/5

@@ -4,16 +4,16 @@
     ViewData["Title"] = "Central de Adoções";
 }
 
-<link rel="stylesheet" href="~/css/adocao_page.css"/>
+<link rel="stylesheet" href="~/css/central_page.css"/>
 
 <div class="banner text-center">
     <h1 class="text-center" id="title">Central de Adoções</h1>
     <p>Bem-vindo(a) a nossa central de adoções, aqui você encontra animaizinhos anciosos por um novo lar!</p>
     <a class="btn btn-success" role="button" asp-action="CadastrarAdocao">Cadastrar novo animal para adoção</a>
-    <form>
-        <div class="form-group">
+    <form class="form-inline barra-busca">
+        <div class="form-row d-flex">
             <input class="form-control" placeholder="Busque aqui por: Nome, Idade, Sexo, Cidade, Raça, Cor e etc" name="buscaPet" />
-            <input class="form-control" type="submit" value="Buscar" />
+            <input class="btn btn-secondary col-auto" role="button" type="submit" value="Buscar" />
         </div>
     </form>
 </div>

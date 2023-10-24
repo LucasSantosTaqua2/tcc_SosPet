@@ -146,10 +146,14 @@ a{
     color: white;
     border: 5px solid white;
 }
-.card-img-top{
-    height: 200px;
+
+.card-img-top {
+    min-height: 200px;
+    max-height: 200px;
+    border-radius: 10px;
 }
-.coluna-post{
+
+.coluna-post {
     align-items: center;
     justify-content: center;
     margin-top: 2%;
@@ -161,16 +165,17 @@ a{
     padding: 10px;
     border-radius: 10px;
     width: 280px;
+    height: 470px;
     margin-right: 2%;
     margin-top: 20px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
     color: black;
     transition: transform 0.5s;
-    transform:translateX(1) scale(0);
+    transform: translateX(1) scale(0);
     margin-bottom: 2%;
-  }
-  
-  
-.card:hover {
-   transform:translateX(0px) scale(1.1); 
 }
+
+
+    .card:hover {
+        transform: translateX(0px) scale(1.1);
+    }
