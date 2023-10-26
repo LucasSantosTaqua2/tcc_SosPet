@@ -3,23 +3,24 @@
     ViewData["Title"] = "Erro";
     Layout = null;
 }
-<head>
+
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/erro_page.css" />
 <link rel="stylesheet" href="~/SOSPets.styles.css" asp-append-version="true" />
-</head>
 
-<body>
-<div class="text-center">
-    <h1>Um erro ocorreu :(</h1>
-    <h2>Um dos erros pode ter  sido:</h2>
-    <p>- Você não tem permissão para acessar esta página. <br />
-       - Ocorreu um erro no redirecionamento. <br />
-       - Você não está Logado.
-    </p>
+
+<div class="container">
+    <div class="text-center">
+        <h1>Um erro ocorreu :(</h1>
+        <h2>Um dos erros pode ter  sido:</h2>
+        <p>- Você não tem permissão para acessar esta página. <br />
+           - Ocorreu um erro no redirecionamento. <br />
+           - Você não está Logado.
+        </p>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-primary" role="button">Voltar para tela inicial</a>
+    </div>
 </div>
 
-<a asp-controller="Home" asp-action="Index" class="btn btn-primary" role="button">Voltar para tela inicial</a>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
-</body>

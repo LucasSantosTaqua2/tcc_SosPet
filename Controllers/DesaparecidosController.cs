@@ -37,7 +37,7 @@ namespace SOSPets.Controllers
         }
 
         // GET: Desaparecidos/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Detalhes(int? id)
         {
             if (id == null || _context.DesaparecidosModel == null)
             {

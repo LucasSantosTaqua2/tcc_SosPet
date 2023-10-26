@@ -15,5 +15,6 @@ namespace SOSPets.Data
         public DbSet<AdocaoModel> AdocaoModel { get; set; }
         public DbSet<EncontradosModel> EncontradosModels { get; set; }
         public DbSet<DesaparecidosModel> DesaparecidosModel { get; set; }
+        public DbSet<ONGsModel> ONGsModels { get; set; }
     }
 }

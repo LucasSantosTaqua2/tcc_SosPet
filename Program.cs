@@ -9,16 +9,12 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<Contexto>
     (options => options.UseSqlServer("server=LUCAS-NOTE; Database=DB_SOS_PETS;Integrated Security=SSPI;TrustServerCertificate=True"));
 
-builder.Services.AddAuthentication("CookieAuthentication").AddCookie("CookieAuthentication", option =>
+builder.Services.AddAuthentication("CookieAuthentication").AddCookie("CookieAuthentication", options =>
 {
-    option.Cookie.Name = "UserLoginCookie";
-    option.LoginPath = "/Usuario/Login";
-    option.AccessDeniedPath = "/Usuario/Erro";
-});
-
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+    options.Cookie.Name = "UserLoginCookie";
+    options.LoginPath = "/Usuario/Login";
+    options.AccessDeniedPath = "/Usuario/Erro";
+    options.ExpireTimeSpan = TimeSpan.FromDays(1);
 });
 
 var app = builder.Build();

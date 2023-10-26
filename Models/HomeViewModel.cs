@@ -4,5 +4,12 @@
     {
         public AdocaoModel adocao { get; set; }
         public List<AdocaoModel> listAdocao { get; set; } 
+
+        public EncontradosModel encontrados { get; set; }
+        public List<EncontradosModel> listEncontrados { get; set; }
+
+        public DesaparecidosModel desaparecidos { get; set; }
+        public List<DesaparecidosModel> listDesaparecidos { get; set; }
+
     }
 }

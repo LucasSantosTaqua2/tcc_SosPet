@@ -4,9 +4,7 @@
     ViewData["Title"] = "Detalhes Adoção";
 }
 
-<head>
-    <link rel="stylesheet" href="~/css/detalhes_page.css" />
-</head>
+<link rel="stylesheet" href="~/css/detalhes_page.css" />
 
 <div class="container">
     <div class="imagem-post">
@@ -30,72 +28,5 @@
            E-mail: @Html.DisplayFor(model => model.Usuario.Email)</p>
         <a asp-action="CentralDeAdocoes" role="button" class="btn-voltar btn btn-light">Voltar para a central</a> 
     </div>
-
-    <!-- <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> -->
-
-
-
-<!--div>
-    <h4>AdocaoModel</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Peso)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Peso)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Porte)
-        </dt>
-        <dd class = "col-sm-10">
-            
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Raca)
-        </dt>
-        <dd class = "col-sm-10">
-           
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Idade)
-        </dt>
-        <dd class = "col-sm-10">
-            
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cor)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cor)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cidade)
-        </dt>
-        <dd class = "col-sm-10">
-           
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Imagem)
-        </dt>
-        <dd class = "col-sm-10">
-            <img src="~/img/adocao/" />
-        </dd>
-        <dt class = "col-sm-2">
-            Contato: 
-        </dt>
-        <dd class = "col-sm-10">
-            Email: @Html.DisplayFor(model => model.Usuario.Email) <br />
-            Telefone: @Html.DisplayFor(model => model.Usuario.Tel)
-        </dd>
-    </dl>
-</div>
-    <div>-->
     
 </div>

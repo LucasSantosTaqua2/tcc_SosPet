@@ -7,6 +7,7 @@ using SOSPets.Helper;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Linq;
 
 namespace SOSPets.Controllers
 {
@@ -39,15 +40,12 @@ namespace SOSPets.Controllers
                 else
                 {
                     var claims = new List<Claim>();
+                    if( usuarioLogado.Is_Admin == true)
+                    {
+                        claims.Add(new Claim(ClaimTypes.Role, "ADM"));
+                    }
                     claims.Add(new Claim(ClaimTypes.Name, usuarioLogado.Nome));
                     claims.Add(new Claim(ClaimTypes.Sid, usuarioLogado.Id.ToString()));
-                    if( usuarioModel.Is_Admin == true)
-                    {
-                        claims.Add(new Claim(ClaimTypes.Role, "Admin"));
-                    } else
-                    {
-                        claims.Add(new Claim(ClaimTypes.Role, "User"));
-                    }
 
 
                     var userIdentity = new ClaimsIdentity(claims, "Acesso");
@@ -75,7 +73,7 @@ namespace SOSPets.Controllers
         // GET: Usuario
         public async Task<IActionResult> Index()
         {
-            if(User.IsInRole("Admin"))
+            if(User.IsInRole("ADM"))
             {
               return _context.UsuarioModels != null ? 
                           View(await _context.UsuarioModels.ToListAsync()) :

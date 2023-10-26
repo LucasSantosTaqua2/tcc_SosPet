@@ -24,7 +24,7 @@ body {
     margin-bottom: 60px;
 }
 /*----------------------fundo---------------------------*/
-.fundo{
+.fundo {
     border-radius: 5px;
     border: 5px solid white;
     height: 70vh;
@@ -32,11 +32,13 @@ body {
     text-align: center;
     align-items: center;
     justify-content: center;
+    background-image: url('~/img/foto-fundo-home.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .fundo-img {
-    background-image: url("../img/img_home.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+    
 }
 /*----------------------sobre---------------------------*/
 .img-sobre {
@@ -138,7 +140,7 @@ a{
 }
 /*----------------------adocao---------------------------*/
 
-.adocao {
+.home-content {
     margin-top: 3%;
     background: #DEB887;
     border-radius: 5px;

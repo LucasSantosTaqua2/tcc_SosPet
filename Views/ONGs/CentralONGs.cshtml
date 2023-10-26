@@ -1,0 +1,25 @@
+﻿@model IEnumerable<SOSPets.Models.ONGsModel>
+
+@{
+    ViewData["Title"] = "Central de ONGs";
+}
+
+<link rel="stylesheet" href="~/css/central_page.css" />
+
+<div class="banner text-center">
+    <h1 class="text-center" id="title">Central de ONGs</h1>
+    <p>Bem-vindo(a) a nossa central de ONGs, aqui você encontra ONGs de ajuda para os animais, conheça e colabore!</p>
+    @if(User.IsInRole("ADM"))
+    {
+        <a class="btn btn-success" role="button" asp-action="CadastrarONG">Cadastrar ONG (Somente ADM)</a>
+    } else
+    {
+        <a class="btn btn-success" role="button" href="#" target="_blank">Sou uma ONG, e quero fazer parte do projeto!</a>
+    }
+    <form class="form-inline barra-busca">
+        <div class="form-row d-flex">
+            <input class="form-control" placeholder="Busque aqui por: Nome, Cidade" name="buscaPet" />
+            <input class="btn btn-secondary col-auto" role="button" type="submit" value="Buscar" />
+        </div>
+    </form>
+</div>

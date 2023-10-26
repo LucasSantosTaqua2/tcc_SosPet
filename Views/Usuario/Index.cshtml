@@ -4,11 +4,16 @@
     ViewData["Title"] = "Adm: Central de Usuarios";
 }
 
-<h1>Adm: Central de Usuarios</h1>
+<link rel="stylesheet" href="~/css/adm-style-pages.css" />
+
+<h1>Central de Usuarios</h1>
 
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
@@ -18,6 +23,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Tel)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Is_Admin)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -25,16 +33,22 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Email)
+               <p>@item.Email</p>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Tel)
             </td>
             <td>
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                @item.Is_Admin.ToString()
+            </td>
+            <td>
+                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Deletar</a>
             </td>
         </tr>
 }
