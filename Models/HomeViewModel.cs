@@ -11,5 +11,7 @@
         public DesaparecidosModel desaparecidos { get; set; }
         public List<DesaparecidosModel> listDesaparecidos { get; set; }
 
+        public UsuarioModel usuario { get; set; }
+        public List<UsuarioModel> listUser { get; set; }
     }
 }

@@ -29,10 +29,12 @@
                 <img src="~/img/desaparecidos/@Html.DisplayFor(modelItem => item.Imagem)" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title text-center">@Html.DisplayFor(modelItem => item.Nome)</h5>
-                    <p class="card-text">
-                        Cidade: @Html.DisplayFor(modelItem => item.Cidade)<br>
-                        Descrição: @Html.DisplayFor(modelItem => item.Descricao)
-                    </p>
+                    <div class="informacoes">
+                        <p class="card-text">
+                            Cidade: @Html.DisplayFor(modelItem => item.Cidade)<br>
+                            Descrição: @Html.DisplayFor(modelItem => item.Descricao)
+                        </p>
+                    </div>
                 </div>
                 <a class="btn btn-primary align-items-center" role="button" asp-action="Detalhes" asp-route-id="@item.Id">Este animal é meu</a>
             </div>

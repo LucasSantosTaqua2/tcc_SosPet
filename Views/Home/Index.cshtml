@@ -4,37 +4,12 @@
     ViewData["Title"] = "Home";
 }
 
-<div class="text_ale">
+
 <div class="fundo">
-    <div class="fundo-img">
-      <!-- <img src="~/img/foto-fundo-home.png" /> -->
-    </div>
-</div>
+    <img src="~/img/img-fundo.png"/>
 </div>
 <!-------------------------------------------------------------------------------------------------->
-<div class="campanha">
-    <div class="row">
-        <br>
-        <H1>Campanhas</H1>
-        <div class="camp-img col">
-            <img src="img/cat1.jpg" alt="" class="img-camp">
-            <h5>Unidos pelas Patas</h5>
-        </div>
-        <div class="camp-img col">
-            <img src="img/dog1.jpg" alt="" class="img-camp">
-            <h5>Crueldade Zero</h5>
-        </div>
-        <div class="camp-img col">
-            <img src="img/cat2.jpg" alt="" class="img-camp">
-            <h5>Crueldade Zero</h5>
-        </div>
-        <div class="camp-img col">
-            <img src="img/dog2.jpg" alt="" class="img-camp">
-            <h5>Amigos para Sempre</h5>
-        </div><br>
-    </div>
-    <a href="#" class="link"> Clique aqui para continuar vendo as campanhas!</a>
-</div>
+
 <!-------------------------------------------------------------------------------------------------->
 <div class="home-content">
     <h1 style="text-align: center">Para Adoção</h1>
@@ -109,7 +84,7 @@
                             Descrição: @Html.DisplayFor(modelItem => item.Descricao)
                         </p>
                     </div>
-                    <a class="btn btn-primary align-items-center" role="button" asp-controller="Desaparecidos" asp-action="Details" asp-route-id="@item.Id">Eu vi este animal</a>
+                    <a class="btn btn-primary align-items-center" role="button" asp-controller="Desaparecidos" asp-action="Detalhes" asp-route-id="@item.Id">Eu vi este animal</a>
                 </div>
 
             </div>

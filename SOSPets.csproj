@@ -12,7 +12,6 @@
     <None Include="wwwroot\css\desaparecidos.css" />
     <None Include="wwwroot\css\encontrados.css" />
     <None Include="wwwroot\css\login.css" />
-    <None Include="wwwroot\css\ongs.css" />
   </ItemGroup>
 
   <ItemGroup>

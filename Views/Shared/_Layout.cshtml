@@ -17,7 +17,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-faded border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a asp-controller="Home" asp-action="Index"><img src="/img/sos-pets-branco.png" alt="" style="height: 12vh;margin-right: 1%;"></a>
+                <a asp-controller="Home" asp-action="Index"><img src="/img/sos-pets-branco.png" alt="" class="img-logo"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -51,7 +51,7 @@
 
                     @if (User.Identity.IsAuthenticated == true)
                     {
-                        <a href="/Usuario/Details/@User.FindFirstValue(ClaimTypes.Sid)" class="nav-link text-dark btn">@User.Identity.Name</a>
+                        <a href="/Usuario/Detalhes/@User.FindFirstValue(ClaimTypes.Sid)" class="nav-link text-dark btn">@User.Identity.Name</a>
 
                     } else{
                         <a href="/Usuario/Login" class="nav-link text-dark btn">Login</a>
@@ -100,6 +100,7 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/jquery.inputmask.js"></script>
+    <script src="/_framework/aspnetcore-browser-refresh.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)

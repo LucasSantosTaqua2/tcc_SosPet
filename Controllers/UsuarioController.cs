@@ -87,7 +87,7 @@ namespace SOSPets.Controllers
 
         // GET: Usuario/Details/5
         [Authorize(AuthenticationSchemes = "CookieAuthentication")]
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Detalhes(int? id)
         {
             if (id == null || _context.UsuarioModels == null)
             {
@@ -103,6 +103,29 @@ namespace SOSPets.Controllers
 
             if (id == Convert.ToInt32(User.FindFirstValue(ClaimTypes.Sid)))
             {
+                HomeViewModel homeViewModel = new HomeViewModel();
+                int usuario = Convert.ToInt32(User.FindFirstValue(ClaimTypes.Sid));
+                int usuarioIdAdocao = Convert.ToInt32(homeViewModel.adocao.UsuarioId);
+                int usuarioIdDesa = Convert.ToInt32(homeViewModel.desaparecidos.UsuarioId);
+                int usuarioIdEncon = Convert.ToInt32(homeViewModel.encontrados.UsuarioId);
+
+                if (usuarioIdAdocao == usuario)
+                {
+                    List<AdocaoModel> adocaoLista = _context.AdocaoModel.Include(a => a.Usuario).OrderByDescending(a => a.Data).ToList();
+                    homeViewModel.listAdocao = adocaoLista;
+                }
+                if(usuarioIdDesa == usuario)
+                {
+                    List<DesaparecidosModel> desaLista = _context.DesaparecidosModel.Include(a => a.Usuario).OrderByDescending(a => a.Data).Take(4).ToList();
+                    homeViewModel.listDesaparecidos = desaLista;
+                }
+                if(usuarioIdEncon == usuario)
+                {
+                    List<EncontradosModel> encoLista = _context.EncontradosModels.Include(a => a.Usuario).OrderByDescending(a => a.Data).Take(4).ToList();
+                    homeViewModel.listEncontrados = encoLista;
+                }
+
+
                 return View(usuarioModel);
             } else
             {
@@ -168,7 +191,7 @@ namespace SOSPets.Controllers
 
             _context.Update(usuarioModel);
             _context.SaveChanges();
-            return RedirectToAction("Details", "Usuario");
+            return View("Detalhes");
 
             /*if (ModelState.IsValid)
             {
@@ -193,12 +216,21 @@ namespace SOSPets.Controllers
         // GET: Usuario/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            _context.UsuarioModels.Remove(_context.UsuarioModels.Where(a => a.Id == id).FirstOrDefault());
-            _context.SaveChanges();
-            await HttpContext.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            if (id == null || _context.UsuarioModels == null)
+            {
+                return NotFound();
+            }
 
+            var usuarioModel = await _context.UsuarioModels
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (usuarioModel == null)
+            {
+                return NotFound();
+            }
+
+            return View(usuarioModel);
         }
+    
 
         // POST: Usuario/Delete/5
         [HttpPost, ActionName("Delete")]

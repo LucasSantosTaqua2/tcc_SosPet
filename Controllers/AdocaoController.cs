@@ -61,9 +61,6 @@ namespace SOSPets.Controllers
         [Authorize(AuthenticationSchemes = "CookieAuthentication")]
         public IActionResult CadastrarAdocao()
         {
-            /* var claimIdUser = User.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Sid).FirstOrDefault(); 
-             ViewData["UsuarioId"] = claimIdUser; */
-            ViewData["UsuarioId"] = new SelectList (_context.UsuarioModels, "Id", "Id");
             return View();
         }
 
@@ -72,7 +69,6 @@ namespace SOSPets.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CadastrarAdocao(AdocaoModel adocaoModel, IFormFile imagem)
         {
-            /* int usuarioId = Convert.ToInt32(User.FindFirstValue("Sid")); */
 
             int userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.Sid));
 

@@ -5,6 +5,7 @@
 }
 
 <link rel="stylesheet" href="~/css/central_page.css" />
+<link rel="stylesheet" href="~/css/ongs_page.css" />
 
 <div class="banner text-center">
     <h1 class="text-center" id="title">Central de ONGs</h1>
@@ -14,12 +15,35 @@
         <a class="btn btn-success" role="button" asp-action="CadastrarONG">Cadastrar ONG (Somente ADM)</a>
     } else
     {
-        <a class="btn btn-success" role="button" href="#" target="_blank">Sou uma ONG, e quero fazer parte do projeto!</a>
+        <a class="btn btn-success" role="button" href="https://forms.gle/FN3NZPBjHH26QQXf6" target="_blank">Sou uma ONG, e quero fazer parte do projeto!</a>
     }
     <form class="form-inline barra-busca">
         <div class="form-row d-flex">
-            <input class="form-control" placeholder="Busque aqui por: Nome, Cidade" name="buscaPet" />
+            <input class="form-control" placeholder="Busque aqui por: Nome, Cidade" name="busca" />
             <input class="btn btn-secondary col-auto" role="button" type="submit" value="Buscar" />
         </div>
     </form>
+</div>
+
+
+<div class="coluna-post row row-cols-4 ">
+
+    @foreach (var item in Model)
+    {
+        <div class="row">
+
+            <div class="card ">
+                <img src="~/img/ONGs/@Html.DisplayFor(modelItem => item.Imagem)" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title text-center">@Html.DisplayFor(modelItem => item.Nome)</h5>
+                    <p class="card-text">
+                        Cidade: @Html.DisplayFor(modelItem => item.Cidade)
+                    </p>
+                </div>
+                <a class="btn btn-primary align-items-center" role="button" asp-action="Detalhes" asp-route-id="@item.Id">Saber mais</a>
+            </div>
+
+        </div>
+    }
+
 </div>

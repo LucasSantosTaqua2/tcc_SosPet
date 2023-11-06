@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 
-.container{
+.container {
     border: 4px solid rgba(0, 0, 0, .2);
     border-radius: 5px;
     padding: 30px;
@@ -13,11 +13,17 @@
     margin-bottom: 30px;
 }
 
+.informacoes{
+    max-width: 200px;
+}
+
 .imagem-post {
     border: 3px solid #9c815d;
     background-color: #fff;
-    width: 30vw;
-    height: 50vh;
+    min-width: 30vw;
+    min-height: 50vh;
+    max-height: 50vh;
+    max-width: 30vw;
     border-radius: 5%;
     margin-right: 20px;
     overflow: hidden;

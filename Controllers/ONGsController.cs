@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,22 +14,30 @@ namespace SOSPets.Controllers
     public class ONGsController : Controller
     {
         private readonly Contexto _context;
+        private string caminhoImagem;
 
-        public ONGsController(Contexto context)
+
+        public ONGsController(Contexto context, IWebHostEnvironment sistema)
         {
             _context = context;
+            caminhoImagem = sistema.WebRootPath;
         }
 
         // GET: ONGs
-        public async Task<IActionResult> CentralONGs()
+        public async Task<IActionResult> CentralONGs(string busca)
         {
-              return _context.ONGsModels != null ? 
-                          View(await _context.ONGsModels.ToListAsync()) :
-                          Problem("Entity set 'Contexto.ONGsModels'  is null.");
+            var contexto = _context.ONGsModels.OrderByDescending(a => a.Data);
+
+            if (!String.IsNullOrWhiteSpace(busca))
+            {
+                contexto = (IOrderedQueryable<ONGsModel>)contexto.Where(b => b.Nome.Contains(busca) || b.Cidade.Contains(busca));
+            }
+
+            return View(await contexto.ToListAsync());
         }
 
         // GET: ONGs/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Detalhes(int? id)
         {
             if (id == null || _context.ONGsModels == null)
             {
@@ -46,9 +55,16 @@ namespace SOSPets.Controllers
         }
 
         // GET: ONGs/Create
-        public IActionResult Create()
+        [Authorize(AuthenticationSchemes = "CookieAuthentication")]
+        public IActionResult CadastrarONG()
         {
-            return View();
+            if(User.IsInRole("ADM"))
+            {
+                return View();
+            } else
+            {
+                return RedirectToAction("ErroView", "Erro");
+            }
         }
 
         // POST: ONGs/Create
@@ -56,15 +72,34 @@ namespace SOSPets.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Descricao,Endereco,Cidade,Tel,Email,Data,Imagem")] ONGsModel oNGsModel)
+        public async Task<IActionResult> CadastrarONG(ONGsModel oNGsModel, IFormFile imagem)
         {
-            if (ModelState.IsValid)
+            if (User.IsInRole("ADM"))
             {
+                string caminhoSalvarImg = caminhoImagem + "\\img\\ONGs\\";
+                string nomeImg = Guid.NewGuid() + "_" + imagem.FileName;
+
+                if (!Directory.Exists(caminhoSalvarImg))
+                {
+                    Directory.CreateDirectory(caminhoSalvarImg);
+                }
+
+                using (var stream = System.IO.File.Create(caminhoSalvarImg + nomeImg))
+                {
+                    await imagem.CopyToAsync(stream);
+                }
+
+                oNGsModel.Imagem = nomeImg;
+
                 _context.Add(oNGsModel);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(CentralONGs));
             }
-            return View(oNGsModel);
+            else
+            {
+                return RedirectToAction("ErroView", "Erro");
+            }
+
         }
 
         // GET: ONGs/Edit/5

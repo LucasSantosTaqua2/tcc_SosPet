@@ -1,0 +1,36 @@
+﻿@model SOSPets.Models.ONGsModel
+
+@{
+    ViewData["Title"] = "Detalhes da ONG";
+}
+
+<link rel="stylesheet" href="~/css/ong_detalhes_page.css"/>
+
+<div class="container-ong text-center">
+    <div class="imagem">
+        <img src="~/img/ONGs/@Html.DisplayFor(model => model.Imagem)" class="img-ong"/>
+    </div>
+    <h1>@Html.DisplayFor(model => model.Nome)</h1>
+    
+    <div class="item-ong">
+        <h4>Descrição</h4>
+        <p>@Html.DisplayFor(model => model.Descricao)</p>
+    </div>
+    <div class="item-ong">
+        <h4>Endereço</h4>
+        <p>@Html.DisplayFor(model => model.Endereco)</p>
+    </div>
+    <div class="item-ong">
+        <h4>Cidade</h4>
+        <p>@Html.DisplayFor(model => model.Cidade)</p>
+    </div>
+    <div class="contato">
+        <h4>Entre em contato com esta ONG!</h4>
+        <div class="info-contato">
+            <p>Telefone: @Html.DisplayFor(model => model.Tel)</p>
+            <p>E-mail: @Html.DisplayFor(model => model.Email)</p>
+        </div>
+    </div>
+
+    <a asp-action="CentralONGs" role="button" class="btn-voltar btn btn-primary">Voltar para a central</a>
+</div>

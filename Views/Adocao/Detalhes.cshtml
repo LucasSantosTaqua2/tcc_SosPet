@@ -13,13 +13,15 @@
     <div class="info-post">
         <h1>@Html.DisplayFor(model => model.Nome)</h1>
         <h5> @Html.DisplayFor(model => model.Cidade)</h5>
-        <p>
-           Raça:  @Html.DisplayFor(model => model.Raca) <br />
-           Sexo:  @Html.DisplayFor(model => model.Sexo) <br />
-           Idade: @Html.DisplayFor(model => model.Idade) <br />
-           Cor: @Html.DisplayFor(model => model.Cor)  <br />
-           Porte: @Html.DisplayFor(model => model.Porte)
-        </p>
+        <div class="informacoes">
+            <p>
+               Raça:  @Html.DisplayFor(model => model.Raca) <br />
+               Sexo:  @Html.DisplayFor(model => model.Sexo) <br />
+               Idade: @Html.DisplayFor(model => model.Idade) <br />
+               Cor: @Html.DisplayFor(model => model.Cor)  <br />
+               Porte: @Html.DisplayFor(model => model.Porte)
+            </p>
+        </div>
     </div>
     <div class="contato-post">
         <h2>Informações de contato</h2>
