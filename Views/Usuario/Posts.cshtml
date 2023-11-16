@@ -1,23 +1,16 @@
 ﻿@model HomeViewModel;
 
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "Postagens";
 }
 
-
-<div class="fundo">
-    <img src="~/img/img-fundo.png"/>
-</div>
-<!-------------------------------------------------------------------------------------------------->
-
-<!-------------------------------------------------------------------------------------------------->
 <div class="home-content">
     <h1 style="text-align: center">Para Adoção</h1>
     <div class="coluna-post row row-cols-4 ">
         @foreach (var item in Model.listAdocao)
         {
-                <div class="row">
-                    <div class="card ">
+            <div class="row">
+                <div class="card ">
                     <img src="~/img/adocao/@Html.DisplayFor(modelItem => item.Imagem)" class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title text-center">@Html.DisplayFor(modelItem => item.Nome)</h5>
@@ -27,7 +20,7 @@
                             Idade: @Html.DisplayFor(modelItem => item.Idade)<br>
                             Cor: @Html.DisplayFor(modelItem => item.Cor)<br>
                             Porte: @Html.DisplayFor(modelItem => item.Porte)<br>
-                            Cidade: @Html.DisplayFor(modelItem => item.Cidade) 
+                            Cidade: @Html.DisplayFor(modelItem => item.Cidade)
                         </p>
                     </div>
                     <a class="btn btn-primary align-items-center" role="button" asp-controller="Adocao" asp-action="Detalhes" asp-route-id="@item.Id">Quero adotar</a>
@@ -38,7 +31,7 @@
     </div>
 
     <a asp-controller="Adocao" asp-action="CentralDeAdocoes" class="link link-vermais">Clique aqui para continuar vendo os Pets para adoção!</a>
-           
+
 </div>
 <!-------------------------------------------------------------------------------------------------->
 <div class="home-content">

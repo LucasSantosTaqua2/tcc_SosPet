@@ -4,7 +4,7 @@
     ViewData["Title"] = "Detalhes Adoção";
 }
 
-<link rel="stylesheet" href="~/css/detalhes_page.css" />
+<link rel="stylesheet" href="~/css/detalhes_desa_page.css" />
 
 <div class="container">
     <div class="imagem-post">
@@ -15,11 +15,11 @@
         <h5> @Html.DisplayFor(model => model.Cidade)</h5>
         <div class="informacoes">
             <p>
-               Raça:  @Html.DisplayFor(model => model.Raca) <br />
-               Sexo:  @Html.DisplayFor(model => model.Sexo) <br />
-               Idade: @Html.DisplayFor(model => model.Idade) <br />
-               Cor: @Html.DisplayFor(model => model.Cor)  <br />
-               Porte: @Html.DisplayFor(model => model.Porte)
+                <span>Raça:</span>  @Html.DisplayFor(model => model.Raca) <br />
+                <span>Sexo:</span>  @Html.DisplayFor(model => model.Sexo) <br />
+                <span>Idade:</span> @Html.DisplayFor(model => model.Idade) <br />
+                <span>Cor:</span> @Html.DisplayFor(model => model.Cor)  <br />
+                <span>Porte:</span> @Html.DisplayFor(model => model.Porte)
             </p>
         </div>
     </div>

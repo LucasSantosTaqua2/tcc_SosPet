@@ -103,27 +103,7 @@ namespace SOSPets.Controllers
 
             if (id == Convert.ToInt32(User.FindFirstValue(ClaimTypes.Sid)))
             {
-                HomeViewModel homeViewModel = new HomeViewModel();
-                int usuario = Convert.ToInt32(User.FindFirstValue(ClaimTypes.Sid));
-                int usuarioIdAdocao = Convert.ToInt32(homeViewModel.adocao.UsuarioId);
-                int usuarioIdDesa = Convert.ToInt32(homeViewModel.desaparecidos.UsuarioId);
-                int usuarioIdEncon = Convert.ToInt32(homeViewModel.encontrados.UsuarioId);
-
-                if (usuarioIdAdocao == usuario)
-                {
-                    List<AdocaoModel> adocaoLista = _context.AdocaoModel.Include(a => a.Usuario).OrderByDescending(a => a.Data).ToList();
-                    homeViewModel.listAdocao = adocaoLista;
-                }
-                if(usuarioIdDesa == usuario)
-                {
-                    List<DesaparecidosModel> desaLista = _context.DesaparecidosModel.Include(a => a.Usuario).OrderByDescending(a => a.Data).Take(4).ToList();
-                    homeViewModel.listDesaparecidos = desaLista;
-                }
-                if(usuarioIdEncon == usuario)
-                {
-                    List<EncontradosModel> encoLista = _context.EncontradosModels.Include(a => a.Usuario).OrderByDescending(a => a.Data).Take(4).ToList();
-                    homeViewModel.listEncontrados = encoLista;
-                }
+               
 
 
                 return View(usuarioModel);
@@ -161,6 +141,32 @@ namespace SOSPets.Controllers
             /*return View(usuarioModel); */
         }
 
+        public IActionResult Posts()
+        {
+            int userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.Sid));
+
+            HomeViewModel homeViewModel = new HomeViewModel();
+
+            if(homeViewModel.adocao.UsuarioId == userId)
+            {
+                List<AdocaoModel> adocaoLista = _context.AdocaoModel.OrderByDescending(a => a.Data).ToList();
+                homeViewModel.listAdocao = adocaoLista;
+            }
+            if (homeViewModel.encontrados.UsuarioId == userId)
+            {
+                List<EncontradosModel> encoLista = _context.EncontradosModels.OrderByDescending(a => a.Data).ToList();
+                homeViewModel.listEncontrados = encoLista;
+            }
+            if (homeViewModel.desaparecidos.UsuarioId == userId)
+            {
+                List<DesaparecidosModel> desaLista = _context.DesaparecidosModel.OrderByDescending(a => a.Data).ToList();
+                homeViewModel.listDesaparecidos = desaLista;
+            }
+
+
+
+            return View(homeViewModel);
+        }
         // GET: Usuario/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {

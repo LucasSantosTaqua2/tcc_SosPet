@@ -27,7 +27,7 @@ body {
 .img-logo {
     height: 12vh;
     margin-right: 1%;
-    transition: .2s ease-in;
+    transition: .3s ease-in;
 }
     .img-logo:hover {
         filter: invert(1);
@@ -117,15 +117,16 @@ a{
     text-decoration: none;
     color: rgb(0, 0, 0);
     font-size: larger;
-    padding: 10px;
+    font-size: 16pt;
     border-radius: 5px;
     transition: .5s;
     margin-top: 10px;
+    padding-bottom: 30px;
 }
 
     .link:hover {
         color: white;
-        font-size: larger;
+        font-size: 17pt;
     }
 
 /*----------------------campanha---------------------------*/
@@ -151,8 +152,18 @@ a{
     background: #DEB887;
     border-radius: 5px;
     margin-bottom: 3%;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
     color: white;
     border: 5px solid white;
+} .home-content a {
+     display: flex;
+     justify-content: center;   
+  }
+
+.link-vermais {
+
 }
 
 .card-img-top {
@@ -181,7 +192,10 @@ a{
     transition: transform 0.5s;
     transform: translateX(1) scale(0);
     margin-bottom: 2%;
-}
+} .card:first-child {
+      margin-left: 0;
+  }
+
 
 
     .card:hover {
@@ -194,3 +208,13 @@ a{
     height: 80%;
     position: center;
 }
+
+#img-footer {
+    height: 16vh;
+    margin-right: 1%;
+    transition: .5s ease;
+}
+    #img-footer:hover {
+        filter: invert(1);
+        
+    }
