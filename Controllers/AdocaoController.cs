@@ -143,12 +143,12 @@ namespace SOSPets.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UsuarioId"] = new SelectList(_context.UsuarioModels, "Id", "Email", adocaoModel.UsuarioId);
-            return View(adocaoModel);
+
+            return RedirectToAction("Posts", "Usuario");
         }
 
         // GET: Adocao/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Excluir(int? id)
         {
             if (id == null || _context.AdocaoModel == null)
             {
@@ -167,7 +167,7 @@ namespace SOSPets.Controllers
         }
 
         // POST: Adocao/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Excluir")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
@@ -182,7 +182,7 @@ namespace SOSPets.Controllers
             }
             
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Posts", "Usuario");
         }
 
         private bool AdocaoModelExists(int id)

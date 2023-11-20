@@ -4,11 +4,16 @@
     ViewData["Title"] = "Postagens";
 }
 
+<link rel="stylesheet" href="~/css/user_posts_page.css" />
+
+<h1>Minhas Postagens</h1>
+
 <div class="home-content">
-    <h1 style="text-align: center">Para Adoção</h1>
+    <h3 style="text-align: center">Meus animais para adoção.</h3>
     <div class="coluna-post row row-cols-4 ">
-        @foreach (var item in Model.listAdocao)
-        {
+
+     @foreach (var item in Model.listAdocao)
+     {
             <div class="row">
                 <div class="card ">
                     <img src="~/img/adocao/@Html.DisplayFor(modelItem => item.Imagem)" class="card-img-top">
@@ -23,19 +28,22 @@
                             Cidade: @Html.DisplayFor(modelItem => item.Cidade)
                         </p>
                     </div>
-                    <a class="btn btn-primary align-items-center" role="button" asp-controller="Adocao" asp-action="Detalhes" asp-route-id="@item.Id">Quero adotar</a>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-primary">Adotado</button>
+                        <a role="button" class="btn btn-danger" asp-route-id="@item.Id" asp-controller="Adocao" asp-action="Excluir">Excluir</a>
+                    </div>
                 </div>
 
             </div>
-        }
+             
+     }
+            
     </div>
-
-    <a asp-controller="Adocao" asp-action="CentralDeAdocoes" class="link link-vermais">Clique aqui para continuar vendo os Pets para adoção!</a>
 
 </div>
 <!-------------------------------------------------------------------------------------------------->
 <div class="home-content">
-    <h1 style="text-align: center">Animais Encontrados</h1>
+    <h3 style="text-align: center">Meus animais encontrados.</h3>
     <div class="coluna-post row row-cols-4 ">
         @foreach (var item in Model.listEncontrados)
         {
@@ -50,19 +58,21 @@
                             Descrição: @Html.DisplayFor(modelItem => item.Descricao)
                         </p>
                     </div>
-                    <a class="btn btn-primary align-items-center" role="button" asp-controller="Encontrados" asp-action="Detalhes" asp-route-id="@item.Id">Este animal é meu</a>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-primary">Encontrado</button>
+                        <button type="button" class="btn btn-secondary">Editar</button>
+                        <button type="button" class="btn btn-danger">Excluir</button>
+                    </div>
                 </div>
 
             </div>
         }
     </div>
 
-    <a asp-controller="Encontrados" asp-action="CentralEncontrados" class="link link-vermais">Clique aqui para ver mais animais encontrados!</a>
-
 </div>
 <!-------------------------------------------------------------------------------------------------->
 <div class="home-content">
-    <h1 style="text-align: center">Animais Desaparecidos</h1>
+    <h3 style="text-align: center">Meus animais desaparecidos.</h3>
     <div class="coluna-post row row-cols-4 ">
         @foreach (var item in Model.listDesaparecidos)
         {
@@ -77,13 +87,15 @@
                             Descrição: @Html.DisplayFor(modelItem => item.Descricao)
                         </p>
                     </div>
-                    <a class="btn btn-primary align-items-center" role="button" asp-controller="Desaparecidos" asp-action="Detalhes" asp-route-id="@item.Id">Eu vi este animal</a>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-primary">Encontrei</button>
+                        <button type="button" class="btn btn-secondary">Editar</button>
+                        <button type="button" class="btn btn-danger">Excluir</button>
+                    </div>
                 </div>
 
             </div>
         }
     </div>
-
-    <a asp-controller="Desaparecidos" asp-action="CentralDesaparecidos" class="link link-vermais">Clique aqui para ver mais animais desaparecidos!</a>
 
 </div>

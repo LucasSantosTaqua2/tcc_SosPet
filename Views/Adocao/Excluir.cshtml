@@ -1,0 +1,49 @@
+﻿@model SOSPets.Models.AdocaoModel
+
+@{
+    ViewData["Title"] = "Excluir Post";
+}
+
+<link rel="stylesheet" href="~/css/detalhes_desa_page.css" />
+
+<h3>Você tem certeza que deseja excluir este animal das Adoções?</h3>
+
+<div class="container">
+    
+    <div class="imagem-post">
+        <img src="~/img/adocao/@Html.DisplayFor(model => model.Imagem)" alt="">
+    </div>
+    <div class="info-post">
+        <h1>@Html.DisplayFor(model => model.Nome)</h1>
+        <h5> @Html.DisplayFor(model => model.Cidade)</h5>
+        <div class="informacoes">
+            <p>
+                <span>Raça:</span>  @Html.DisplayFor(model => model.Raca) <br />
+                <span>Sexo:</span>  @Html.DisplayFor(model => model.Sexo) <br />
+                <span>Idade:</span> @Html.DisplayFor(model => model.Idade) <br />
+                <span>Cor:</span> @Html.DisplayFor(model => model.Cor)  <br />
+                <span>Porte:</span> @Html.DisplayFor(model => model.Porte)
+            </p>
+        </div>
+    </div>
+    <div class="contato-post">
+        <h2>Informações de contato</h2>
+        <p class="info-contato">
+            @Html.DisplayFor(model => model.Usuario.Nome)<br />
+            Telefone: @Html.DisplayFor(model => model.Usuario.Tel)<br />
+            E-mail: @Html.DisplayFor(model => model.Usuario.Email)
+        </p>
+        <a asp-action="CentralDeAdocoes" role="button" class="btn-voltar btn btn-light">Voltar para a central</a>
+    </div>
+
+</div>
+
+<div>
+
+    
+    <form asp-action="Excluir">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Excluir" class="btn btn-danger" /> |
+        <a asp-controller="Usuario" asp-action="Posts">Voltar para minhas postagens</a>
+    </form>
+</div>

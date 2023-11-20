@@ -1,0 +1,20 @@
+﻿body {
+    text-align: center;
+}
+
+h1 {
+    font-size: 40pt;
+    border: 1px solid #fff;
+    padding: 10px;
+    background: #fff;
+    border-radius: 10px;
+    transition: .5s ease;
+}
+    h1:hover {
+        background: transparent;
+        border: 1px solid black;
+    }
+
+h3{
+    margin-top: 10px;
+}

@@ -141,31 +141,24 @@ namespace SOSPets.Controllers
             /*return View(usuarioModel); */
         }
 
-        public IActionResult Posts()
+        public IActionResult Posts(AdocaoModel adocaoModel, EncontradosModel encontradosModel, DesaparecidosModel desaparecidosModel)
         {
-            int userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.Sid));
+            var userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.Sid));
+
 
             HomeViewModel homeViewModel = new HomeViewModel();
 
-            if(homeViewModel.adocao.UsuarioId == userId)
-            {
-                List<AdocaoModel> adocaoLista = _context.AdocaoModel.OrderByDescending(a => a.Data).ToList();
-                homeViewModel.listAdocao = adocaoLista;
-            }
-            if (homeViewModel.encontrados.UsuarioId == userId)
-            {
-                List<EncontradosModel> encoLista = _context.EncontradosModels.OrderByDescending(a => a.Data).ToList();
-                homeViewModel.listEncontrados = encoLista;
-            }
-            if (homeViewModel.desaparecidos.UsuarioId == userId)
-            {
-                List<DesaparecidosModel> desaLista = _context.DesaparecidosModel.OrderByDescending(a => a.Data).ToList();
-                homeViewModel.listDesaparecidos = desaLista;
-            }
+            List<AdocaoModel> adocaoLista = _context.AdocaoModel.Include(a => a.Usuario).OrderByDescending(a => a.Data).Where(a => a.UsuarioId == userId).ToList();
+            List<DesaparecidosModel> desaLista = _context.DesaparecidosModel.Include(a => a.Usuario).OrderByDescending(a => a.Data).Where(a => a.UsuarioId == userId).ToList();
+            List<EncontradosModel> encoLista = _context.EncontradosModels.Include(a => a.Usuario).OrderByDescending(a => a.Data).Where(a => a.UsuarioId == userId).ToList();
 
 
+            homeViewModel.listAdocao = adocaoLista;
+            homeViewModel.listEncontrados = encoLista;
+            homeViewModel.listDesaparecidos = desaLista;
 
             return View(homeViewModel);
+
         }
         // GET: Usuario/Edit/5
         public async Task<IActionResult> Edit(int? id)
