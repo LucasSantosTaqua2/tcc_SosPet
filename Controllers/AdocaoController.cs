@@ -148,6 +148,7 @@ namespace SOSPets.Controllers
         }
 
         // GET: Adocao/Delete/5
+        [Authorize(AuthenticationSchemes = "CookieAuthentication")]
         public async Task<IActionResult> Excluir(int? id)
         {
             if (id == null || _context.AdocaoModel == null)
@@ -184,6 +185,46 @@ namespace SOSPets.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("Posts", "Usuario");
         }
+
+        // GET: Adocao/Delete/5
+        [Authorize(AuthenticationSchemes = "CookieAuthentication")]
+        public async Task<IActionResult> Adotado(int? id)
+        {
+            if (id == null || _context.AdocaoModel == null)
+            {
+                return NotFound();
+            }
+
+            var adocaoModel = await _context.AdocaoModel
+                .Include(a => a.Usuario)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (adocaoModel == null)
+            {
+                return NotFound();
+            }
+
+            return View(adocaoModel);
+        }
+
+        // POST: Adocao/Adotado/5
+        [HttpPost, ActionName("Adotado")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AdotadoConfirmed(int id)
+        {
+            if (_context.AdocaoModel == null)
+            {
+                return Problem("Entity set 'Contexto.AdocaoModel'  is null.");
+            }
+            var adocaoModel = await _context.AdocaoModel.FindAsync(id);
+            if (adocaoModel != null)
+            {
+                _context.AdocaoModel.Remove(adocaoModel);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Posts", "Usuario");
+        }
+
 
         private bool AdocaoModelExists(int id)
         {

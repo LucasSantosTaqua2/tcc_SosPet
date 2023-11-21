@@ -1,10 +1,13 @@
 ﻿@model SOSPets.Models.EncontradosModel
 
 @{
-    ViewData["Title"] = "Detalhes do animal encontrado";
+    ViewData["Title"] = "Animal Devolvido";
 }
 
 <link rel="stylesheet" href="~/css/detalhes_desa_page.css" />
+<link rel="stylesheet" href="~/css/exclusao_page.css" />
+
+<h2>Este animal foi devoldido para o dono?</h2>
 
 <div class="container">
     <div class="imagem-post">
@@ -19,13 +22,13 @@
             </p>
         </div>
     </div>
-    <div class="contato-post">
-        <h2>Informações de contato</h2>
-        <p class="info-contato">
-            @Html.DisplayFor(model => model.Usuario.Nome)<br />
-            Telefone: @Html.DisplayFor(model => model.Usuario.Tel)<br />
-            E-mail: @Html.DisplayFor(model => model.Usuario.Email)
-        </p>
-        <a asp-action="CentralEncontrados" role="button" class="btn-voltar btn btn-light">Voltar para a central</a>
-    </div>
 </div>
+
+<div class="btn-exclusao">
+    <form asp-action="Excluir">
+        <input type="hidden" asp-for="Id" />
+        <a asp-controller="Usuario" class="btn btn-secondary" role="button" asp-action="Posts">Voltar</a>
+        <input type="submit" value="Devolvido" class="btn btn-success" />
+    </form>
+</div>
+

@@ -29,7 +29,7 @@
                         </p>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-primary">Adotado</button>
+                        <a role="button" asp-route-id="@item.Id" asp-controller="Adocao" asp-action="Adotado" class="btn btn-primary">Adotado</a>
                         <a role="button" class="btn btn-danger" asp-route-id="@item.Id" asp-controller="Adocao" asp-action="Excluir">Excluir</a>
                     </div>
                 </div>
@@ -59,9 +59,8 @@
                         </p>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-primary">Encontrado</button>
-                        <button type="button" class="btn btn-secondary">Editar</button>
-                        <button type="button" class="btn btn-danger">Excluir</button>
+                        <a role="button" class="btn btn-primary" asp-route-id="@item.Id" asp-controller="Encontrados" asp-action="Devolvido">Devolvido</a>
+                        <a role="button" class="btn btn-danger" asp-route-id="@item.Id" asp-controller="Encontrados" asp-action="Excluir">Excluir</a>
                     </div>
                 </div>
 
@@ -88,9 +87,8 @@
                         </p>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-primary">Encontrei</button>
-                        <button type="button" class="btn btn-secondary">Editar</button>
-                        <button type="button" class="btn btn-danger">Excluir</button>
+                        <a role="button" class="btn btn-primary" asp-route-id="@item.Id" asp-controller="Desaparecidos" asp-action="Encontrado">Encontrei</a>
+                        <a role="button" class="btn btn-danger" asp-route-id="@item.Id" asp-controller="Desaparecidos" asp-action="Excluir">Excluir</a>
                     </div>
                 </div>
 

@@ -25,7 +25,9 @@ namespace SOSPets.Controllers
             List<AdocaoModel> adocaoLista = _context.AdocaoModel.Include(a => a.Usuario).OrderByDescending(a => a.Data).Take(4).ToList();
             List<DesaparecidosModel> desaLista = _context.DesaparecidosModel.Include(a => a.Usuario).OrderByDescending(a => a.Data).Take(4).ToList();
             List<EncontradosModel> encoLista = _context.EncontradosModels.Include(a => a.Usuario).OrderByDescending(a => a.Data).Take(4).ToList();
+            List<ONGsModel> ongsLista = _context.ONGsModels.OrderByDescending(a => a.Data).Take(4).ToList();
 
+            homeViewModel.listOngs = ongsLista;
             homeViewModel.listAdocao = adocaoLista;
             homeViewModel.listEncontrados = encoLista;
             homeViewModel.listDesaparecidos = desaLista;

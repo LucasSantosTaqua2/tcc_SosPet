@@ -90,14 +90,6 @@ namespace SOSPets.Controllers
             _context.Add(encontradosModel);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(CentralEncontrados));
-
-            /*if (ModelState.IsValid)
-            {
-                _context.Add(encontradosModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }*/
-            /*return View(encontradosModel);*/
         }
 
         // GET: Encontrados/Edit/5
@@ -154,7 +146,8 @@ namespace SOSPets.Controllers
         }
 
         // GET: Encontrados/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        [Authorize(AuthenticationSchemes = "CookieAuthentication")]
+        public async Task<IActionResult> Excluir(int? id)
         {
             if (id == null || _context.EncontradosModels == null)
             {
@@ -173,7 +166,7 @@ namespace SOSPets.Controllers
         }
 
         // POST: Encontrados/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Excluir")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
@@ -188,7 +181,45 @@ namespace SOSPets.Controllers
             }
             
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Posts", "Usuario");
+        }
+
+        [Authorize(AuthenticationSchemes = "CookieAuthentication")]
+        public async Task<IActionResult> Devolvido(int? id)
+        {
+            if (id == null || _context.EncontradosModels == null)
+            {
+                return NotFound();
+            }
+
+            var encontradosModel = await _context.EncontradosModels
+                .Include(e => e.Usuario)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (encontradosModel == null)
+            {
+                return NotFound();
+            }
+
+            return View(encontradosModel);
+        }
+
+        // POST: Encontrados/Delete/5
+        [HttpPost, ActionName("Devolvido")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DevolvidoConfirmed(int id)
+        {
+            if (_context.EncontradosModels == null)
+            {
+                return Problem("Entity set 'Contexto.EncontradosModels'  is null.");
+            }
+            var encontradosModel = await _context.EncontradosModels.FindAsync(id);
+            if (encontradosModel != null)
+            {
+                _context.EncontradosModels.Remove(encontradosModel);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Posts", "Usuario");
         }
 
         private bool EncontradosModelExists(int id)

@@ -2,6 +2,9 @@
 {
     public class HomeViewModel
     {
+        public ONGsModel ongs { get; set; }
+        public List<ONGsModel> listOngs { get; set; }
+
         public AdocaoModel adocao { get; set; }
         public List<AdocaoModel> listAdocao { get; set; } 
 

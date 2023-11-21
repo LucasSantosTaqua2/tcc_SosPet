@@ -162,8 +162,8 @@ a{
      justify-content: center;   
   }
 
-.link-vermais {
-
+.card-text span {
+    font-weight: 500;
 }
 
 .card-img-top {

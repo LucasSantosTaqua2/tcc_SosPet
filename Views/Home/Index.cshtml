@@ -9,6 +9,32 @@
     <img src="~/img/img-fundo.png"/>
 </div>
 <!-------------------------------------------------------------------------------------------------->
+<div class="home-content">
+    <h1 style="text-align: center">ONGs</h1>
+    <div class="coluna-post row row-cols-4 ">
+        @foreach (var item in Model.listOngs)
+        {
+            <div class="row">
+                <div class="card ">
+                    <img src="~/img/ONGs/@Html.DisplayFor(modelItem => item.Imagem)" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">@Html.DisplayFor(modelItem => item.Nome)</h5>
+                        <p class="card-text">
+                            <span>Endereço:</span> @Html.DisplayFor(modelItem => item.Endereco)<br>
+                            <span>Cidade:</span> @Html.DisplayFor(modelItem => item.Cidade)
+                        </p>
+                    </div>
+                    <a class="btn btn-primary align-items-center" role="button" asp-controller="ONGs" asp-action="Detalhes" asp-route-id="@item.Id">Saber Mais</a>
+                </div>
+
+            </div>
+        }
+    </div>
+
+    <a asp-controller="ONGs" asp-action="CentralONGs" class="link link-vermais">Clique aqui para conhecer mais ONGs!</a>
+
+</div>
+
 
 <!-------------------------------------------------------------------------------------------------->
 <div class="home-content">
@@ -22,12 +48,12 @@
                     <div class="card-body">
                         <h5 class="card-title text-center">@Html.DisplayFor(modelItem => item.Nome)</h5>
                         <p class="card-text">
-                            Raça: @Html.DisplayFor(modelItem => item.Raca)<br>
-                            Sexo: @Html.DisplayFor(modelItem => item.Sexo)<br>
-                            Idade: @Html.DisplayFor(modelItem => item.Idade)<br>
-                            Cor: @Html.DisplayFor(modelItem => item.Cor)<br>
-                            Porte: @Html.DisplayFor(modelItem => item.Porte)<br>
-                            Cidade: @Html.DisplayFor(modelItem => item.Cidade) 
+                            <span>Raça:</span> @Html.DisplayFor(modelItem => item.Raca)<br>
+                            <span>Sexo:</span> @Html.DisplayFor(modelItem => item.Sexo)<br>
+                            <span>Idade:</span> @Html.DisplayFor(modelItem => item.Idade)<br>
+                            <span>Cor:</span> @Html.DisplayFor(modelItem => item.Cor)<br>
+                            <span>Porte:</span> @Html.DisplayFor(modelItem => item.Porte)<br>
+                            <span>Cidade:</span> @Html.DisplayFor(modelItem => item.Cidade)
                         </p>
                     </div>
                     <a class="btn btn-primary align-items-center" role="button" asp-controller="Adocao" asp-action="Detalhes" asp-route-id="@item.Id">Quero adotar</a>
@@ -53,8 +79,8 @@
                     <div class="card-body">
                         <h5 class="card-title text-center">Encontrado</h5>
                         <p class="card-text">
-                            Cidade: @Html.DisplayFor(modelItem => item.Cidade)<br>
-                            Descrição: @Html.DisplayFor(modelItem => item.Descricao)
+                            <span>Cidade:</span> @Html.DisplayFor(modelItem => item.Cidade)<br>
+                            <span>Descrição:</span> @Html.DisplayFor(modelItem => item.Descricao)
                         </p>
                     </div>
                     <a class="btn btn-primary align-items-center" role="button" asp-controller="Encontrados" asp-action="Detalhes" asp-route-id="@item.Id">Este animal é meu</a>
@@ -80,8 +106,8 @@
                     <div class="card-body">
                         <h5 class="card-title text-center">@Html.DisplayFor(modelItem => item.Nome)</h5>
                         <p class="card-text">
-                            Cidade: @Html.DisplayFor(modelItem => item.Cidade)<br>
-                            Descrição: @Html.DisplayFor(modelItem => item.Descricao)
+                            <span>Cidade:</span> @Html.DisplayFor(modelItem => item.Cidade)<br>
+                            <span>Descrição:</span> @Html.DisplayFor(modelItem => item.Descricao)
                         </p>
                     </div>
                     <a class="btn btn-primary align-items-center" role="button" asp-controller="Desaparecidos" asp-action="Detalhes" asp-route-id="@item.Id">Eu vi este animal</a>

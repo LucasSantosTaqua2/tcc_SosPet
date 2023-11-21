@@ -141,6 +141,7 @@ namespace SOSPets.Controllers
             /*return View(usuarioModel); */
         }
 
+        [Authorize(AuthenticationSchemes = "CookieAuthentication")]
         public IActionResult Posts(AdocaoModel adocaoModel, EncontradosModel encontradosModel, DesaparecidosModel desaparecidosModel)
         {
             var userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.Sid));

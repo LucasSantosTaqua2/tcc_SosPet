@@ -147,7 +147,7 @@ namespace SOSPets.Controllers
         }
 
         // GET: Desaparecidos/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Excluir(int? id)
         {
             if (id == null || _context.DesaparecidosModel == null)
             {
@@ -155,7 +155,7 @@ namespace SOSPets.Controllers
             }
 
             var desaparecidosModel = await _context.DesaparecidosModel
-                .Include(d => d.Usuario)
+                .Include(a => a.Usuario)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (desaparecidosModel == null)
             {
@@ -166,7 +166,7 @@ namespace SOSPets.Controllers
         }
 
         // POST: Desaparecidos/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Excluir")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
@@ -181,7 +181,46 @@ namespace SOSPets.Controllers
             }
             
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Posts", "Usuario");
+        }
+
+
+        // GET: Desaparecidos/Delete/5
+        public async Task<IActionResult> Encontrado(int? id)
+        {
+            if (id == null || _context.DesaparecidosModel == null)
+            {
+                return NotFound();
+            }
+
+            var desaparecidosModel = await _context.DesaparecidosModel
+                .Include(a => a.Usuario)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (desaparecidosModel == null)
+            {
+                return NotFound();
+            }
+
+            return View(desaparecidosModel);
+        }
+
+        // POST: Desaparecidos/Delete/5
+        [HttpPost, ActionName("Encontrado")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EncontradoConfirmed(int id)
+        {
+            if (_context.DesaparecidosModel == null)
+            {
+                return Problem("Entity set 'Contexto.DesaparecidosModel'  is null.");
+            }
+            var desaparecidosModel = await _context.DesaparecidosModel.FindAsync(id);
+            if (desaparecidosModel != null)
+            {
+                _context.DesaparecidosModel.Remove(desaparecidosModel);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Posts", "Usuario");
         }
 
         private bool DesaparecidosModelExists(int id)

@@ -1,0 +1,35 @@
+﻿@model SOSPets.Models.DesaparecidosModel
+
+@{
+    ViewData["Title"] = "Excluir";
+}
+
+<link rel="stylesheet" href="~/css/detalhes_desa_page.css" />
+<link rel="stylesheet" href="~/css/exclusao_page.css" />
+
+
+<h2>Você tem certeza que deseja excluir este animal dos Desaparecidos?</h2>
+
+<div class="container">
+    <div class="imagem-post">
+        <img src="~/img/desaparecidos/@Html.DisplayFor(model => model.Imagem)" alt="">
+    </div>
+    <div class="info-post">
+        <h1>@Html.DisplayFor(model => model.Nome)</h1>
+        <h5>@Html.DisplayFor(model => model.Cidade)</h5>
+        <div class="informacoes">
+            <p>
+                <span>Descrição:</span>  @Html.DisplayFor(model => model.Descricao)
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<div class="btn-exclusao">
+    <form asp-action="Excluir">
+        <input type="hidden" asp-for="Id" />
+        <a asp-controller="Usuario" class="btn btn-secondary" role="button" asp-action="Posts">Voltar</a>
+        <input type="submit" value="Excluir" class="btn btn-danger" />
+    </form>
+</div>

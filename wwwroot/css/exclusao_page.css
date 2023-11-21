@@ -1,0 +1,19 @@
+﻿body {
+    text-align: center;
+}
+
+.btn-exclusao{
+    margin-bottom: 20px;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+
+}
+.btn-exclusao a {
+    font-size: 16pt;
+    padding: 15px;
+}
+.btn-exclusao input {
+    font-size: 16pt;
+    padding: 15px;
+}
