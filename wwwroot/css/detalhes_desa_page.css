@@ -87,6 +87,11 @@
     font-weight: 600;
 }
 
+.tel {
+    font-size: 12pt;
+    font-weight: 500 !important;
+}
+
 .btn-voltar {
     border: 1px solid black;
 }

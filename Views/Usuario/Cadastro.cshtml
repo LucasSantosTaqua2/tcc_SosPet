@@ -40,11 +40,12 @@
         <div class="theme-btn-container"></div>
     </section>
    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
-    <script src="https://rawgit.com/RobinHerbots/Inputmask/5.x/dist/jquery.inputmask.js"></script>
-
-    <script type="module" src="/js/Login.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
     <script src="/_framework/aspnetcore-browser-refresh.js"></script>
+    <script>
+        $('#Telefone').mask('(00) 00000-0000');
+    </script>
 
 @section Scripts {
     @{

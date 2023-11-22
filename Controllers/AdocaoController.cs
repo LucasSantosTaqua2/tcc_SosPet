@@ -172,6 +172,8 @@ namespace SOSPets.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            
+
             if (_context.AdocaoModel == null)
             {
                 return Problem("Entity set 'Contexto.AdocaoModel'  is null.");
@@ -181,9 +183,14 @@ namespace SOSPets.Controllers
             {
                 _context.AdocaoModel.Remove(adocaoModel);
             }
-            
-            await _context.SaveChangesAsync();
+
+            if (User.IsInRole("ADM"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return RedirectToAction("Posts", "Usuario");
+
         }
 
         // GET: Adocao/Delete/5

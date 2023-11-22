@@ -8,8 +8,11 @@
 
     <div class="container-user">
     <h1>@Html.DisplayFor(Model => Model.Nome)</h1>
-
-        <br>
+    @if (User.IsInRole("ADM"))
+    {
+        <p>Administrador</p>
+    }
+    <br>
 
         <div class="dados-user">
             <input type="hidden" asp-for="Id" />
@@ -24,13 +27,13 @@
         </div>
 
         <div class="btn-options-user">
-            <a asp-action="Posts" role="button" class="btn btn-primary">Minhas postagens</a>
-            <a asp-action="Logout" role="button" class="btn btn-secondary">Deslogar</a>
         @if (User.IsInRole("ADM"))
         {
-            <a class="btn btn-light" asp-controller="Usuario" asp-action="Index">Central de Usuarios</a>
+            <a asp-action="Logout" role="button" class="btn btn-secondary">Deslogar</a>
         } else
         {
+            <a asp-action="Posts" role="button" class="btn btn-primary">Minhas postagens</a>
+            <a asp-action="Logout" role="button" class="btn btn-secondary">Deslogar</a>
             <a class="btn btn-light" asp-controller="Home" asp-action="Index">Voltar para Home</a>
         }
         </div>

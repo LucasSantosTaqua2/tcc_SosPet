@@ -15,7 +15,7 @@
         <h5> @Html.DisplayFor(model => model.Cidade)</h5>
         <div class="informacoes">
             <p>
-                Descrição: @Html.DisplayFor(model => model.Descricao)
+                <span>Descrição:</span> @Html.DisplayFor(model => model.Descricao)
             </p>
         </div>
     </div>
@@ -23,7 +23,7 @@
         <h2>Informações de contato</h2>
         <p class="info-contato">
             @Html.DisplayFor(model => model.Usuario.Nome)<br />
-            Telefone: @Html.DisplayFor(model => model.Usuario.Tel)<br />
+            Telefone: <b id="Telefone" class="tel">@Html.DisplayFor(model => model.Usuario.Tel)</b><br />
             E-mail: @Html.DisplayFor(model => model.Usuario.Email)
         </p>
         <a asp-action="CentralEncontrados" role="button" class="btn-voltar btn btn-light">Voltar para a central</a>

@@ -6,7 +6,16 @@
 
 <link rel="stylesheet" href="~/css/detalhes_desa_page.css" />
 <link rel="stylesheet" href="~/css/exclusao_page.css" />
-<h2>Você tem certeza que deseja excluir este animal das Adoções?</h2>
+@if (User.IsInRole("ADM"))
+{
+    <div class="text-center">
+        <h2>Administrador, você tem certeza que deseja excluir este animal da Central de Adoções?</h2>
+    </div>
+}
+else
+{
+    <h2>Você tem certeza que deseja excluir este animal das Adoções?</h2>
+}
 
 <div class="container">
     
@@ -33,6 +42,12 @@
         <input type="hidden" asp-for="Id" />
         <a asp-controller="Usuario" class="btn btn-secondary" role="button" asp-action="Posts">Voltar</a>
         <input type="submit" value="Excluir" class="btn btn-danger" />
+        @if (User.IsInRole("ADM"))
+        {
+            <div class="text-center">
+                <h3>Após a exclusão você sera redirecionado para a Home.</h3>
+            </div>
+        }
     </form>
 </div>
 
