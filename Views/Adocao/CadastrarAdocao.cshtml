@@ -8,20 +8,21 @@
 
 <div class="container-post text-center">
     <h1>Cadastrar animal para Adoção</h1>
+    <p>Coloque informações reais de seu animal, para que as pessoas adotem um novo animalzinho!</p>
 
     <br>
 
     <form asp-action="CadastrarAdocao" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group">
+            <div class="form-group part-form">
                 <label asp-for="Nome" class="control-label">Nome</label>
-                <input asp-for="Nome" class="form-control" placeholder="Digite o nome do animal" />
+                <input asp-for="Nome" class="form-control input-cad" placeholder="Digite o nome do animal" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Porte" class="control-label">Porte</label>
-                <select asp-for="Porte" class="form-control">
+            <div class="form-group part-form">
+             <label asp-for="Porte" class="control-label">Porte</label>
+            <select asp-for="Porte" class="form-control input-cadl">
                     <option selected>Selecione o Porte</option>
                     <option value="Pequeno">Pequeno</option>
                     <option value="Médio">Médio</option>
@@ -29,46 +30,44 @@
                 </select>
                 <span asp-validation-for="Porte" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group part-form">
                 <label asp-for="Sexo" class="control-label">Sexo</label>
-                <select asp-for="Sexo" class="form-control">
+                <select asp-for="Sexo" class="form-control input-cadl">
                     <option selected>Selecione o Sexo</option>
                     <option value="Macho">Macho</option>
                     <option value="Fêmea">Fêmea</option>
                 </select>
                 <span asp-validation-for="Porte" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Raca" class="control-label">Raça</label>
-                <input asp-for="Raca" class="form-control" placeholder="Digite a raça do animal" />
-                <legend class="text-muted">Se não souber a raça, digite "Gato" ou "Cachorro"</legend>
+            <div class="form-group part-form">
+                <label asp-for="Raca" class="control-label input-cad">Raça</label>
+                <input asp-for="Raca" class="form-control" placeholder="Digite a raça do animal (Caso não souber a raça, digite Gato ou Cachorro)" />
                 <span asp-validation-for="Raca" class="text-danger"></span>
             </div>
 
 
-            <div class="form-group">
-                <label asp-for="Idade" class="control-label">Idade</label>
-                <input asp-for="Idade" class="form-control" placeholder="Digite a idade do animal" />
-                <legend class="text-muted">Se não souber a idade, digite "Não sei". (Não se esqueça de colocar Anos ou Meses)</legend>
+            <div class="form-group part-form">
+                <label asp-for="Idade" class="control-label input-cad">Idade</label>
+                <input asp-for="Idade" class="form-control" placeholder="Digite a idade do animal (Não se esqueça de colocar Anos ou Meses)" />
                 <span asp-validation-for="Idade" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Cor" class="control-label">Cor</label>
+            <div class="form-group part-form">
+                <label asp-for="Cor" class="control-label input-cad">Cor</label>
                 <input asp-for="Cor" class="form-control" placeholder="Digite a Cor do animal" />
                 <span asp-validation-for="Cor" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Cidade" class="control-label">Cidade</label>
+            <div class="form-group part-form">
+                <label asp-for="Cidade" class="control-label input-cad">Cidade</label>
                 <input asp-for="Cidade" class="form-control" placeholder="Digite a cidade do animal" />
                 <span asp-validation-for="Cidade" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Imagem" class="control-label">Foto do animal</label>
+            <div class="form-group part-form">
+                <label asp-for="Imagem" class="control-label input-cad">Foto do animal</label>
                 <input type="file" accept="image/*" name="imagem" asp-for="Imagem" class="form-control" />
             </div>
         <div class="form-group btn-criar">
             <a asp-action="CentralDeAdocoes" class="btn btn-light" role="button">Voltar para a Central</a>
-            <input type="submit" value="Criar Publicação" class="btn btn-primary" />
+            <input type="submit" value="Cadastrar Animal" class="btn btn-primary" />
         </div>
     </form>
 </div>

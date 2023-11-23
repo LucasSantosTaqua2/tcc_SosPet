@@ -11,11 +11,12 @@
         <img src="~/img/encontrados/@Html.DisplayFor(model => model.Imagem)" alt="">
     </div>
     <div class="info-post">
-        <h3>Encontrado</h3>
-        <h5> @Html.DisplayFor(model => model.Cidade)</h5>
+        <h3>@Html.DisplayFor(model => model.Cidade)</h3>
+        <h5>Encontrado </h5>
         <div class="informacoes">
             <p>
-                <span>Descrição:</span> @Html.DisplayFor(model => model.Descricao)
+                <span>Descrição:</span> @Html.DisplayFor(model => model.Descricao)<br />
+                <span>Data:</span> @Html.DisplayFor(model => model.Data)
             </p>
         </div>
     </div>

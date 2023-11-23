@@ -40,7 +40,10 @@ else
 <div class="btn-exclusao">
     <form asp-action="Excluir">
         <input type="hidden" asp-for="Id" />
-        <a asp-controller="Usuario" class="btn btn-secondary" role="button" asp-action="Posts">Voltar</a>
+        @if (!User.IsInRole("ADM"))
+        {
+            <a asp-controller="Usuario" class="btn btn-secondary" role="button" asp-action="Posts">Voltar</a>
+        }
         <input type="submit" value="Excluir" class="btn btn-danger" />
         @if (User.IsInRole("ADM"))
         {

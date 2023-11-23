@@ -34,7 +34,7 @@ namespace SOSPets.Controllers
                 UsuarioModel usuarioLogado = _context.UsuarioModels.Where(a => a.Email == email && a.Password == password).FirstOrDefault();
                 if (usuarioLogado == null)
                 {
-                    TempData["erro"] = "Login e senha invalidos";
+                    TempData["erro"] = "Email ou Senha invalidos";
                     return View();
                 }
                 else
@@ -124,21 +124,32 @@ namespace SOSPets.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Cadastro([Bind("Id,Nome,Email,Tel,Password")] UsuarioModel usuarioModel)
+        public async Task<IActionResult> Cadastro(UsuarioModel usuarioModel, string nome, string tel, string email, string senha)
         {
-            
-            if (_context.UsuarioModels.Where(w => w.Email == usuarioModel.Email).FirstOrDefault() == null)
+            usuarioModel.Nome = nome;
+            usuarioModel.Tel = tel;
+            usuarioModel.Email = email;;
+            usuarioModel.Password = senha;
+
+            if(usuarioModel.Nome == null || usuarioModel.Tel == null || usuarioModel.Email == null || usuarioModel.Password == null)
             {
-                usuarioModel.SetSenhaHash();
-                _context.Add(usuarioModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Login));
+                ModelState.AddModelError("", "Por favor, preencha todos os campos!");
+                return View();
             } else
             {
-                ModelState.AddModelError("", "E-mail já cadastrado");
-                return View();
+                if (_context.UsuarioModels.Where(w => w.Email == usuarioModel.Email).FirstOrDefault() == null)
+                {
+                    usuarioModel.SetSenhaHash();
+                    _context.Add(usuarioModel);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Login));
+                }
+                else
+                {
+                    ModelState.AddModelError("", "E-mail já cadastrado");
+                    return View();
+                }
             }
-            /*return View(usuarioModel); */
         }
 
         [Authorize(AuthenticationSchemes = "CookieAuthentication")]

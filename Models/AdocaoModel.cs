@@ -22,6 +22,7 @@ namespace SOSPets.Models
 
         [Column("Nome")]
         [Display(Name = "Nome")]
+        [Required(ErrorMessage = "Campo requerido!")]
         public string Nome { get; set; }
 
         [Column("Peso")]
@@ -30,26 +31,32 @@ namespace SOSPets.Models
 
         [Column("Porte")]
         [Display(Name = "Porte")]
+        [Required(ErrorMessage = "Campo requerido!")]
         public string Porte { get; set; }
 
         [Column("Sexo")]
         [Display(Name = "Sexo")]
+        [Required(ErrorMessage = "Campo requerido!")]
         public string Sexo { get; set; }
 
         [Column("Raca")]
         [Display(Name = "Raca")]
+        [Required(ErrorMessage = "Campo requerido!")]
         public string Raca { get; set;}
 
         [Column("Idade")]
         [Display(Name = "Idade")]
+        [Required(ErrorMessage = "Campo requerido!")]
         public string Idade { get; set; }
 
         [Column("Cor")]
         [Display(Name = "Cor")]
+        [Required(ErrorMessage = "Campo requerido!")]
         public string Cor { get; set; }
 
         [Column("Cidade")]
         [Display(Name = "Cidade")]
+        [Required(ErrorMessage = "Campo requerido!")]
         public string Cidade { get; set; }
 
         [Column("Data")]
@@ -58,6 +65,7 @@ namespace SOSPets.Models
 
         [Column("Imagem")]
         [Display(Name = "Imagem")]
+        [Required(ErrorMessage = "Campo requerido!")]
         public string Imagem { get; set; }
 
         [Column("UsuarioId")]

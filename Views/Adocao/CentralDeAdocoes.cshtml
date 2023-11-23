@@ -28,13 +28,13 @@
                     <img src="~/img/adocao/@Html.DisplayFor(modelItem => item.Imagem)" class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title text-center">@Html.DisplayFor(modelItem => item.Nome)</h5>
-                        <p class="card-text">   
-                            Raça: @Html.DisplayFor(modelItem => item.Raca)<br>
-                            Sexo: @Html.DisplayFor(modelItem => item.Sexo)<br>
-                            Idade: @Html.DisplayFor(modelItem => item.Idade)<br>
-                            Cor: @Html.DisplayFor(modelItem => item.Cor)<br>
-                            Porte: @Html.DisplayFor(modelItem => item.Porte)<br>
-                            Cidade: @Html.DisplayFor(modelItem => item.Cidade)
+                        <p class="card-text">
+                            <span>Raça:</span> @Html.DisplayFor(modelItem => item.Raca)<br>
+                            <span>Sexo:</span> @Html.DisplayFor(modelItem => item.Sexo)<br>
+                            <span>Idade:</span> @Html.DisplayFor(modelItem => item.Idade)<br>
+                            <span>Cor:</span> @Html.DisplayFor(modelItem => item.Cor)<br>
+                            <span>Porte:</span> @Html.DisplayFor(modelItem => item.Porte)<br>
+                            <span>Cidade:</span> @Html.DisplayFor(modelItem => item.Cidade)<br>
                         </p>
                     </div>
                     @if (User.IsInRole("ADM"))

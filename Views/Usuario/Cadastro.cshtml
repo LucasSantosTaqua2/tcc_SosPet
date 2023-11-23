@@ -16,20 +16,20 @@
             <form asp-action="Cadastro">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
-                        <input asp-for="Nome" type="text" placeholder="Nome Completo" />
-                        <span asp-validation-for="Nome" class="text-danger"></span>
+                        <input asp-for="Nome" type="text" name="nome" placeholder="Nome Completo" />
+
                     </div>
                     <div class="form-group">
                         <input asp-for="Email" type="email" name="email" placeholder="E-mail" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
+                        
                     </div>
                     <div class="form-group">
-                    <input asp-for="Tel" type="text" placeholder="Telefone" id="Telefone" />
-                        <span asp-validation-for="Tel" class="text-danger"></span>
+                    <input asp-for="Tel" type="text" name="tel" placeholder="Telefone" id="Telefone" />
+                        
                     </div>
                     <div class="form-group">
-                        <input asp-for="Password" type="password" placeholder="Senha" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
+                        <input asp-for="Password" name="senha" type="password" placeholder="Senha" />
+                        
                     </div>
                     <!--<input type="password" placeholder="Repetir Senha" />-->
                     <input type="submit" class="opacity" value="Finalizar">

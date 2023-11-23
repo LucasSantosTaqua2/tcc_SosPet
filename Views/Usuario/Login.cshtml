@@ -14,18 +14,19 @@
             <img src="~/img/cachorro-removebg-preview.png" styles="pointer-events: none;" alt="illustration" class="illustration" />
             <h1 class="opacity">Login</h1>
 
-            @if (TempData["MensagemErro"] != null)
-            {
-                <div>
-                    @TempData["MensagemErro"]
-                </div>
-            }
-            @if (TempData["erro"] != null)
-            {
-                <div class="alert alert-danger">
-                    @TempData["erro"]
-                </div>
-            }
+                @if (TempData["MensagemErro"] != null)
+                {
+                    <div class="text-center">
+                        @TempData["MensagemErro"]
+                    </div>
+                }
+                @if (TempData["erro"] != null)
+                {
+                    <div class="alert alert-danger text-center">
+                        @TempData["erro"]
+                    </div>
+                }
+            
 
             <form asp-controller="Usuario" asp-action="Login" method="post">
                 <div class="form-group">

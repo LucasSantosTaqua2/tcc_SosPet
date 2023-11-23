@@ -12,10 +12,12 @@ namespace SOSPets.Models
 
         [Column("Descricao")]
         [Display(Name = "Descricao")]
+        [Required(ErrorMessage = "Campo requerido!")]
         public string Descricao { get; set; }
 
         [Column("Cidade")]
         [Display(Name = "Cidade")]
+        [Required(ErrorMessage = "Campo requerido!")]
         public string Cidade { get; set; }
 
         [Column("Data")]
@@ -23,10 +25,12 @@ namespace SOSPets.Models
 
         [Column("Imagem")]
         [Display(Name = "Imagem")]
+        [Required(ErrorMessage = "Campo requerido!")]
         public string Imagem { get; set; }
 
         [Column("UsuarioId")]
         [Display(Name = "UsuarioId")]
+        [Required(ErrorMessage = "Campo requerido!")]
         public int UsuarioId { get; set; }
         public UsuarioModel Usuario { get; set; }
     }

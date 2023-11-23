@@ -8,7 +8,7 @@
 
 <div class="banner text-center">
     <h1 class="text-center" id="title">Central de Animais Encontrados</h1>
-    <p>Bem-vindo(a) a nossa Central de Animais Encontrados, aqui você encontra animaizinhos que se encontravam perdidos pelas ruas.</p>
+    <p>Bem-vindo(a) a nossa Central de Animais Encontrados, aqui você encontra animaizinhos que se encontravam perdidos pelas ruas e ele pode ser o seu.</p>
     <a class="btn btn-success" role="button" asp-action="CadastrarEncontrado">Cadastrar novo animal encontrado</a>
     <form class="form-inline barra-busca">
         <div class="form-row d-flex">
@@ -30,11 +30,22 @@
                 <div class="card-body">
                     <h5 class="card-title text-center">Encontrado</h5>
                     <p class="card-text">
-                        Cidade: @Html.DisplayFor(modelItem => item.Cidade)<br>
-                        Descrição: @Html.DisplayFor(modelItem => item.Descricao)
+                        <span>Cidade:</span> @Html.DisplayFor(modelItem => item.Cidade)<br>
+                        <span>Descrição:</span> @Html.DisplayFor(modelItem => item.Descricao)<br>
+                        <span>Data:</span> @Html.DisplayFor(modelItem => item.Data)
                     </p>
                 </div>
-                <a class="btn btn-primary align-items-center" role="button" asp-action="Detalhes" asp-route-id="@item.Id">Este animal é meu</a>
+                @if (User.IsInRole("ADM"))
+                {
+                    <div class="btn-group align-items-center" role="group">
+                        <a class="btn btn-primary" role="button" asp-action="Detalhes" asp-route-id="@item.Id">Info</a>
+                        <a role="button" class="btn btn-danger" asp-route-id="@item.Id" asp-controller="Encontrados" asp-action="Excluir">Excluir</a>
+                    </div>
+                }
+                else
+                {
+                    <a class="btn btn-primary align-items-center" role="button" asp-action="Detalhes" asp-route-id="@item.Id">Este animal é meu</a>
+                }
             </div>
 
         </div>
