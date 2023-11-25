@@ -181,7 +181,16 @@ namespace SOSPets.Controllers
             }
             
             await _context.SaveChangesAsync();
-            return RedirectToAction("Posts", "Usuario");
+
+            if (User.IsInRole("ADM"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return RedirectToAction("Posts", "Usuario");
+            }
+
         }
 
         [Authorize(AuthenticationSchemes = "CookieAuthentication")]

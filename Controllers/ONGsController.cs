@@ -123,8 +123,12 @@ namespace SOSPets.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Descricao,Endereco,Cidade,Tel,Email,Data,Imagem")] ONGsModel oNGsModel)
+        public async Task<IActionResult> Edit(int id, ONGsModel oNGsModel, string nome, string desc, string end, string cidade, string tel, string email)
         {
+
+
+
+
             if (id != oNGsModel.Id)
             {
                 return NotFound();
@@ -134,6 +138,15 @@ namespace SOSPets.Controllers
             {
                 try
                 {
+                    oNGsModel.Id = id;
+                    oNGsModel.Nome = nome;
+                    oNGsModel.Descricao = desc;
+                    oNGsModel.Endereco = end;
+                    oNGsModel.Cidade = cidade;
+                    oNGsModel.Tel = tel;
+                    oNGsModel.Email = email;
+                    oNGsModel.Imagem = oNGsModel.Imagem;
+                    oNGsModel.Data = oNGsModel.Data;
                     _context.Update(oNGsModel);
                     await _context.SaveChangesAsync();
                 }
@@ -148,9 +161,9 @@ namespace SOSPets.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return View("CentralONGs");
             }
-            return View(oNGsModel);
+            return View("CentralONGs");
         }
 
         // GET: ONGs/Delete/5
@@ -187,7 +200,7 @@ namespace SOSPets.Controllers
             }
             
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("CentralONGs");
         }
 
         private bool ONGsModelExists(int id)

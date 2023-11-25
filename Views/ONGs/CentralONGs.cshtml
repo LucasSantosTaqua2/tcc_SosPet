@@ -40,7 +40,19 @@
                         Cidade: @Html.DisplayFor(modelItem => item.Cidade)
                     </p>
                 </div>
-                <a class="btn btn-primary align-items-center" role="button" asp-action="Detalhes" asp-route-id="@item.Id">Saber mais</a>
+
+                @if(User.IsInRole("ADM"))
+                {
+                    <div class="btn-group" role="group">
+                      <a class="btn btn-primary align-items-center" role="button" asp-action="Detalhes" asp-route-id="@item.Id">Info</a>
+                      <a role="button" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
+                    </div>
+                }
+                else
+                {     
+                    <a class="btn btn-primary align-items-center" role="button" asp-action="Detalhes" asp-route-id="@item.Id">Saber mais</a>
+                }
+
             </div>
 
         </div>
