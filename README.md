@@ -12,4 +12,17 @@ O objetivo principal deste projeto consiste no desenvolvimento de uma plataforma
 ![image](https://github.com/LucasSantosTaqua2/tcc_SosPet/assets/86979899/f7fba69b-9d39-4899-af23-d45adc2a34b9)
 
 
-CONCLUSÃO: O trabalho foi concluído com sucesso, conseguindo alcançar todos os objetivos propostos, sendo eles, diminuir o índice de animais em situação de rua, aumentar a visibilidade das ONGs para auxílio desses animais abandonados, encontrar animais perdidos e também divulgar os mesmos.
+### CONCLUSÃO: 
+O trabalho foi concluído com sucesso, conseguindo alcançar todos os objetivos propostos, sendo eles, diminuir o índice de animais em situação de rua, aumentar a visibilidade das ONGs para auxílio desses animais abandonados, encontrar animais perdidos e também divulgar os mesmos.
+
+
+
+
+
+
+
+
+
+# DIA DA APRESENTAÇÃO DO PROJETO
+### 27/11/2023
+![IMG-20231127-WA0070](https://github.com/LucasSantosTaqua2/tcc_SosPet/assets/86979899/5832ae45-4a67-48d2-af59-be17786dcaab)
